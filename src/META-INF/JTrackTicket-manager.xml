@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--  					-->
+	<!-- 	INTERCEPTORS	-->
+	<!--  					-->
+	<bean id="objectIsManaged" class="main.java.info.jtrac.aop.manager.AfterObjectIsManaged"/>
+	<bean id="beforeAdviceJValidate" class="main.java.info.jtrac.aop.manager.BeforeAdviceJValidate"/>
+	<bean id="beforeObjectIsNull" class="main.java.info.jtrac.aop.manager.BeforeObjectIsNull"/>
+	<!--  										-->
+	<!-- 	Annotation for the PROPERTYTYPE 	-->
+	<!--  										-->
+	<bean id="userManager" class="main.java.info.jtrac.service.manager.UserManager">
+		<constructor-arg index="0" ref="userDAOImpl"/>
+		<constructor-arg index="1" ref="iUserMapper"/>
+	</bean>
+	<bean id="iUserManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>managerObjectIsNull</value>
+				<value>jValidate</value>
+				<!-- <value>afterObjectIsManaged</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="userManager"/>
+		</property>
+	</bean>
+	<bean id="spaceSequenceManager" class="main.java.info.jtrac.service.manager.SpaceSequenceManager">
+		<constructor-arg index="0" ref="spaceSequenceDAOImpl"/>
+		<constructor-arg index="1" ref="iSpaceSequenceMapper"/>
+	</bean>
+	<bean id="iSpaceSequenceManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>managerObjectIsNull</value>
+				<value>jValidate</value>
+				<!-- <value>afterObjectIsManaged</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="spaceSequenceManager"/>
+		</property>
+	</bean>
+	<bean id="metadataManager" class="main.java.info.jtrac.service.manager.MetadataManager">
+		<constructor-arg index="0" ref="metadataDAOImpl"/>
+		<constructor-arg index="1" ref="iMetadataMapper"/>
+	</bean>
+	<bean id="iMetadataManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>managerObjectIsNull</value>
+				<value>jValidate</value>
+				<!-- <value>afterObjectIsManaged</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="metadataManager"/>
+		</property>
+	</bean>
+	<!-- 																								-->
+	<!-- 										Manager OBJECT 											-->
+	<!-- 																								-->
+	<bean id="findAllPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="findAll"/>
+	</bean>
+	<bean id="persistPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="persist"/>
+	</bean>
+	<bean id="afterObjectIsManaged" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="findAllPointcut"/>
+		<property name="advice" ref="objectIsManaged"/>
+	</bean>
+	<bean id="jValidate" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeAdviceJValidate"/>
+	</bean>
+	<bean id="managerObjectIsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeObjectIsNull"/>
+	</bean>
+</beans>

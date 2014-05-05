@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="objectIsNull" class="main.java.info.jtrac.aop.mapper.BeforeObjectIsNull"/>
+	<bean id="objectIsMapped" class="main.java.info.jtrac.aop.mapper.AfterObjectIsMapped"/>
+	<bean id="beforeAdviceJValidate" class="main.java.info.jtrac.aop.mapper.BeforeAdviceJValidate"/>
+	<bean id="userMapper" class="main.java.info.jtrac.service.mapper.UserMapper"/>
+	<bean id="spaceSequenceMapper" class="main.java.info.jtrac.service.mapper.SpaceSequenceMapper"/>
+	<bean id="metadataMapper" class="main.java.info.jtrac.service.mapper.MetadataMapper"/>
+	<bean id="iUserMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+  				<!-- <value>mapToObject_object_IsMapped</value> -->
+				<!-- <value>mapToDTO_advisor_IsNull</value> -->
+				<!-- <value>mapToDTO_object_IsMapped</value> -->
+				<!-- <value>mapToObject_JValidate</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="userMapper"/>
+		</property>
+	</bean>
+	<bean id="iSpaceSequenceMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+  				<!-- <value>mapToObject_object_IsMapped</value> -->
+				<!-- <value>mapToDTO_advisor_IsNull</value> -->
+				<!-- <value>mapToDTO_object_IsMapped</value> -->
+				<!-- <value>mapToObject_JValidate</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="spaceSequenceMapper"/>
+		</property>
+	</bean>
+	<bean id="iMetadataMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+  				<!-- <value>mapToObject_object_IsMapped</value> -->
+				<!-- <value>mapToDTO_advisor_IsNull</value> -->
+				<!-- <value>mapToDTO_object_IsMapped</value> -->
+				<!-- <value>mapToObject_JValidate</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="metadataMapper"/>
+		</property>
+	</bean>
+	<!-- 	-->
+	<!-- 										MapToObject OBJECT 											-->
+	<!-- 	-->
+	<bean id="mapToObjectPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="mapToObject"/>
+	</bean>
+	<bean id="mapToObject_advisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToObjectPointcut"/>
+		<property name="advice" ref="objectIsNull"/>
+	</bean>
+	<bean id="mapToObject_object_IsMapped" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToObjectPointcut"/>
+		<property name="advice" ref="objectIsMapped"/>
+	</bean>
+	<bean id="mapToObject_JValidate" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeAdviceJValidate"/>
+	</bean>
+	<!-- 	-->
+	<!-- 										MapToDTO OBJECT 											-->
+	<!-- 	-->
+	<bean id="mapToDTOPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="mapToDTO"/>
+	</bean>
+	<bean id="mapToDTO_advisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToDTOPointcut"/>
+		<property name="advice" ref="objectIsNull"/>
+	</bean>
+	<bean id="mapToDTO_object_IsMapped" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToDTOPointcut"/>
+		<property name="advice" ref="objectIsMapped"/>
+	</bean>
+</beans>

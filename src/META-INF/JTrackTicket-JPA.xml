@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="dataSource_JTrack" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="url" value="jdbc:sqlserver://VTWRKS35\IMOSSQL2008R2;databaseName=jTrackDB"/>
+		<property name="username" value="TicketSQLAdmin"/>
+		<property name="password" value="admin@TICKET"/>
+    </bean>
+    <bean id="sessionFactory_JTrack" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource_JTrack"/>
+        <property name="packagesToScan" value="com.blog.cavalr.entity" />
+        <property name="hibernateProperties">
+            <props>
+				<prop key="hibernate.archive.autodetection">class</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+        <property name="annotatedClasses">
+			<list>
+			<value>main.java.info.jtrac.domain.Attachment</value>
+			<value>main.java.info.jtrac.domain.Space</value>
+			<value>main.java.info.jtrac.domain.SpaceSequence</value>
+			<value>main.java.info.jtrac.domain.Metadata</value>
+			<value>main.java.info.jtrac.domain.User</value>
+			<value>main.java.info.jtrac.domain.UserSpaceRole</value>
+			<value>main.java.info.jtrac.domain.History</value>
+			<value>main.java.info.jtrac.domain.AbstractItem</value>
+			<value>main.java.info.jtrac.domain.Item</value>
+			<value>main.java.info.jtrac.domain.ItemUser</value>
+			<value>main.java.info.jtrac.domain.ItemItem</value>
+			<value>main.java.info.jtrac.domain.Tag</value>
+			<value>main.java.info.jtrac.domain.ItemTag</value>
+			<!-- <value></value> -->
+			</list>
+		</property>
+    </bean>
+</beans>
