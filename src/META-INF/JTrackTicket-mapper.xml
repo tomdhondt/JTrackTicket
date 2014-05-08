@@ -7,6 +7,7 @@
 	<bean id="userMapper" class="main.java.info.jtrac.service.mapper.UserMapper"/>
 	<bean id="spaceSequenceMapper" class="main.java.info.jtrac.service.mapper.SpaceSequenceMapper"/>
 	<bean id="metadataMapper" class="main.java.info.jtrac.service.mapper.MetadataMapper"/>
+	<bean id="spaceMapper" class="main.java.info.jtrac.service.mapper.SpaceMapper"/>
 	<bean id="iUserMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
  		<property name="proxyInterfaces">
 			<value>main.java.info.jtrac.service.mapper.IMapper</value>
@@ -56,6 +57,23 @@
 		</property>
 		<property name="target">
 			<ref bean="metadataMapper"/>
+		</property>
+	</bean>
+	<bean id="iSpaceMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+  				<!-- <value>mapToObject_object_IsMapped</value> -->
+				<!-- <value>mapToDTO_advisor_IsNull</value> -->
+				<!-- <value>mapToDTO_object_IsMapped</value> -->
+				<!-- <value>mapToObject_JValidate</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="spaceMapper"/>
 		</property>
 	</bean>
 	<!-- 	-->
