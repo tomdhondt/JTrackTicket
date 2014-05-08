@@ -67,6 +67,25 @@
 			<ref bean="metadataManager"/>
 		</property>
 	</bean>
+	<bean id="spaceManager" class="main.java.info.jtrac.service.manager.SpaceManager">
+		<constructor-arg index="0" ref="spaceDAOImpl"/>
+		<constructor-arg index="1" ref="iSpaceMapper"/>
+	</bean>
+	<bean id="iSpaceManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>managerObjectIsNull</value>
+				<value>jValidate</value>
+				<!-- <value>afterObjectIsManaged</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="spaceManager"/>
+		</property>
+	</bean>
 	<!-- 																								-->
 	<!-- 										Manager OBJECT 											-->
 	<!-- 																								-->
