@@ -33,9 +33,12 @@ public abstract class MappingUtil {
 	 * @return result as Integer
 	 */
 	public static int parseInt(String object){
-		int result = 0; 
-		if(null!= object){
-			result = Integer.parseInt(object);
+		int result = 0;
+		try{
+			if(null!= object){
+				result = Integer.parseInt(object);
+			}
+		}catch(NumberFormatException nXe){
 		}
 		return result;
 	}
