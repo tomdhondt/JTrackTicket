@@ -27,6 +27,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -39,6 +41,14 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name="SPACE")
+@NamedQueries(
+		{
+			@NamedQuery(
+			name = "Space_findByName",
+			query = "FROM Space s WHERE s.name = :name"
+			)
+		}
+	)
 public class Space implements Serializable {
 	/**
 	 * Serial version ID

@@ -34,6 +34,7 @@ public class SpaceManagerTest {
 	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
 	IManager<MetadataDTO> iMetadataManager = (IManager<MetadataDTO>) context.getBean("iMetadataManager");
 	IPersistenceDAOImpl<Metadata> metadataDAOImpl = (IPersistenceDAOImpl<Metadata>) context.getBean("metadataDAOImpl");
+	IPersistenceDAOImpl<Space> spaceDAOImpl = (IPersistenceDAOImpl<Space>) context.getBean("spaceDAOImpl");
 	IManager<SpaceSequenceDTO> iSpaceSequenceManager = (IManager<SpaceSequenceDTO>) context.getBean("iSpaceSequenceManager");
 	IManager<SpaceDTO> iSpaceManager = (IManager<SpaceDTO>) context.getBean("iSpaceManager");
 	IPersistenceDAOImpl<SpaceSequence> spaceSequenceDAOImpl = (IPersistenceDAOImpl<SpaceSequence>) context.getBean("spaceSequenceDAOImpl");
@@ -50,6 +51,10 @@ public class SpaceManagerTest {
                 + "</fields></metadata>");
 		try {
 			this.iMetadataManager.persist(metadataParentDTO);
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"name","Name parent metadata"));
+			List<MetadataDTO> listResult = this.iMetadataManager.findByCriteria(list, "findByName");
+			metadataParentDTO = listResult.get(0);
 		} catch (ManagerException e) {
 			assertNull(e);
 		}
@@ -64,6 +69,10 @@ public class SpaceManagerTest {
                 + "</fields></metadata>");
 		try {
 			this.iMetadataManager.persist(metadataDTO);
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"name","Name metadata"));
+			List<MetadataDTO> listResult = this.iMetadataManager.findByCriteria(list, "findByName");
+			metadataDTO = listResult.get(0);
 		} catch (ManagerException e) {
 			assertNull(e);
 		}
@@ -73,30 +82,49 @@ public class SpaceManagerTest {
 		} catch (ManagerException e) {
 			assertNull(e);
 		}
-
 	}
 	@Test
 	public void testScenario01() {
 		SpaceDTO dTo = new SpaceDTO();
 		dTo.setDescription("Description Space");
+		dTo.setName("SpaceName");
 		dTo.setGuestAllowed(true);
 		dTo.setMd_Id(metadataDTO.getId());
 		dTo.setMd_type(metadataDTO.getType());
 		dTo.setMd_name(metadataDTO.getName());
 		dTo.setMd_description(metadataDTO.getDescription());
 		dTo.setMd_xmlString(metadataDTO.getXmlString());
-		dTo.setMdp_Id(metadataParentDTO.getParent_Id());
-		dTo.setMdp_type(metadataParentDTO.getParent_Type());
-		dTo.setMdp_name(metadataParentDTO.getParent_Name());
-		dTo.setMdp_description(metadataParentDTO.getParent_Description());
-		dTo.setMdp_xmlString(metadataParentDTO.getParent_XmlString());
+		dTo.setSpaceSequence_id(this.spaceSeqDTO.getId());
+		dTo.setSpaceSequence_nextSeqNum(this.spaceSeqDTO.getNextSeqNum());
 		try {
 			iSpaceManager.persist(dTo);
 		} catch (ManagerException e) {
 			assertNull(e);
 		}
+		try {
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"name","SpaceName"));
+			List<SpaceDTO> listResult = this.iSpaceManager.findByCriteria(list, "Space_findByName");
+			SpaceDTO spaceDTO = listResult.get(0);
+			assertNotNull(spaceDTO);
+			assertEquals("SpaceName", spaceDTO.getName());
+			assertEquals("Description Space", spaceDTO.getDescription());
+		} catch (ManagerException e) {
+			assertNull(e);
+		}
+		try {
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"name","SpaceName"));
+			List<SpaceDTO> listResult;
+			listResult = this.iSpaceManager.findByCriteria(list, "Space_findByName");
+			SpaceDTO spaceDTO = listResult.get(0);
+			this.spaceDAOImpl.delete(MappingUtil.parseInt(spaceDTO.getId()));
+		} catch (ManagerException e) {
+			assertNull(e);
+		} catch (DataDAOException e) {
+			assertNull(e);
+		}
 	}
-	
 	@After
 	public void afterSpaceManager(){
 		List<NameQueryParam> list = new ArrayList<NameQueryParam>();
