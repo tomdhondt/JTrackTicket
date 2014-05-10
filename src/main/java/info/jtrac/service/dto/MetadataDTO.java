@@ -1,4 +1,5 @@
 package main.java.info.jtrac.service.dto;
+
 /**
  * Class MetadataDTO
  * @author Tom Dhondt - created at : 3-mei-2014
@@ -14,6 +15,23 @@ public class MetadataDTO {
     private String parent_Name;
     private String parent_Description;
     private String parent_XmlString;
+    /**
+     * Default constructor for the Class
+     */
+    public MetadataDTO(){
+    }
+    /**
+     * Constructor for the class
+     * @param name as String
+     * @param description as String
+     * @param xmlString as String
+     */
+    public MetadataDTO(String name, String description, String xmlString){
+    	this();
+    	this.name = name;
+    	this.description = description;
+    	this.xmlString = xmlString;
+    }
 	/**
 	 * @return the id
 	 */
