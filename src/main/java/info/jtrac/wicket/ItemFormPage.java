@@ -81,7 +81,6 @@ public class ItemFormPage extends BasePage {
             filter = new JtracFeedbackMessageFilter();
             feedback.setFilter(filter);
             add(feedback);   
-            version = item.getVersion();
             if(item.getId() > 0) {
                 editMode = true;                
             }
@@ -206,7 +205,7 @@ public class ItemFormPage extends BasePage {
         protected void validate() {
             filter.reset();     
             Item item = (Item) getModelObject();                      
-            if(editMode && item.getVersion() != version) {                                
+            if(editMode) {                                
                 // user must have used back button after edit
                 error(localize("item_form.error.version"));                                                    
             } 
