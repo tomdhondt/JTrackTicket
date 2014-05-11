@@ -8,7 +8,6 @@ import java.util.List;
 import main.java.info.jtrac.dao.IPersistenceDAOImpl;
 import main.java.info.jtrac.dao.NameQueryParam;
 import main.java.info.jtrac.domain.User;
-import main.java.info.jtrac.exception.data.DataDAOException;
 import main.java.info.jtrac.exception.manager.ManagerException;
 import main.java.info.jtrac.service.dto.UserDTO;
 import main.java.info.jtrac.util.MappingUtil;
