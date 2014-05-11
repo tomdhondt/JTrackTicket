@@ -50,4 +50,28 @@ public abstract class MappingUtil {
 	public static String parseInt(int object){
 		return  Integer.toString(object);
 	}
+	/**
+	 * Method will map a String to a Double
+	 * @param value as String
+	 * @return Double as result
+	 */
+	public static Double mapStringToDouble(String value) {
+		Double result = 0.00;
+		if(null != value){
+			result = Double.parseDouble(value);
+		}
+		return result;
+	}
+	/**
+	 * Method will map a Double to a String
+	 * @param value as Double
+	 * @return String as result
+	 */
+	public static String mapDoubleToString(Double value) {
+		String result = "";
+		if(null != value){
+			result = Double.toString(value);
+		}
+		return result;
+	}
 }
