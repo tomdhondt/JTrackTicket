@@ -87,6 +87,7 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 		 */
 		AbstractItemDTO dto = null;
 		if(null != object){
+			dto = new AbstractItemDTO();
 			dto.setId(MappingUtil.mapLongToString(object.getId()));
 			dto.setParent_Item_Id(MappingUtil.mapLongToString(object.getParent().getId()));
 			dto.setParent_Item_EditReason(object.getParent().getEditReason());
