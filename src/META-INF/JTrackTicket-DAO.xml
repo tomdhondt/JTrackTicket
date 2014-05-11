@@ -63,8 +63,8 @@
 		</property>
 		<property name="interceptorNames">
 			<list>
-				<value>persistAdvisor_IsNull</value>
-				<value>persistAdvisor_Logger</value>
+				<!-- <value>persistAdvisor_IsNull</value>
+				<value>persistAdvisor_Logger</value>-->
 			</list>
 		</property>
 		<property name="target">

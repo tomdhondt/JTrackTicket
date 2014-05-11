@@ -24,6 +24,15 @@ public class MetadataManagerTest {
 	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
 	IManager<MetadataDTO> iMetadataManager = (IManager<MetadataDTO>) context.getBean("iMetadataManager");
 	IPersistenceDAOImpl<Metadata> metadataDAOImpl = (IPersistenceDAOImpl<Metadata>) context.getBean("metadataDAOImpl");
+	@Test
+	public void testMetadataPersist(){
+		MetadataDTO dto = new MetadataDTO("default Metadata", "default description MetadataDTO", "<metadata><fields></fields></metadata>");
+		try {
+			iMetadataManager.persist(dto);
+		} catch (ManagerException e) {
+			System.out.println(e);
+		}
+	}
 	/*
 	 * Scenario 01 :
 	 * 01 - create Metadata
@@ -31,7 +40,7 @@ public class MetadataManagerTest {
 	 * 03 - check the object in the database
 	 * 04 - delete the object in the database 
 	 */
-	@Test
+//	@Test
 	public void test() {
 		MetadataDTO parentObject = new MetadataDTO();
 		parentObject.setId("");

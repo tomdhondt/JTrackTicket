@@ -27,7 +27,6 @@ public class MetadataDTO {
      * @param xmlString as String
      */
     public MetadataDTO(String name, String description, String xmlString){
-    	this();
     	this.name = name;
     	this.description = description;
     	this.xmlString = xmlString;

@@ -151,28 +151,28 @@ public class Metadata implements Serializable {
     /* accessor, will be used by Hibernate */
 	public void setXmlString(String xmlString) {
         init();
-        if (xmlString == null) {
-            return;
-        }
-        Document document = XmlUtils.parse(xmlString);
         this.xmlString = xmlString;
-        for (Element e : (List<Element>) document.selectNodes(FIELD_XPATH)) {
-            Field field = new Field(e);            
-            fields.put(field.getName(), field);
-        }       
-        for (Element e : (List<Element>) document.selectNodes(ROLE_XPATH)) {
-            Role role = new Role(e);            
-            roles.put(role.getName(), role);
-        }
-        for (Element e : (List<Element>) document.selectNodes(STATE_XPATH)) {
-            String key = e.attributeValue(STATUS);
-            String value = e.attributeValue(LABEL);
-            states.put(Integer.parseInt(key), value);
-        }        
-        for (Element e : (List<Element>) document.selectNodes(FIELD_ORDER_XPATH)) {
-            String fieldName = e.attributeValue(NAME);
-            fieldOrder.add(Field.convertToName(fieldName));
-        }     
+//        if (xmlString == null) {
+//            return;
+//        }
+//        Document document = XmlUtils.parse(xmlString);
+//        for (Element e : (List<Element>) document.selectNodes(FIELD_XPATH)) {
+//            Field field = new Field(e);            
+//            fields.put(field.getName(), field);
+//        }       
+//        for (Element e : (List<Element>) document.selectNodes(ROLE_XPATH)) {
+//            Role role = new Role(e);            
+//            roles.put(role.getName(), role);
+//        }
+//        for (Element e : (List<Element>) document.selectNodes(STATE_XPATH)) {
+//            String key = e.attributeValue(STATUS);
+//            String value = e.attributeValue(LABEL);
+//            states.put(Integer.parseInt(key), value);
+//        }        
+//        for (Element e : (List<Element>) document.selectNodes(FIELD_ORDER_XPATH)) {
+//            String fieldName = e.attributeValue(NAME);
+//            fieldOrder.add(Field.convertToName(fieldName));
+//        }     
     }        
     
     /* accessor, will be used by Hibernate */
