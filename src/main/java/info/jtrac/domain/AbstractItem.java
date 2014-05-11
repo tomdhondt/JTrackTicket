@@ -55,8 +55,6 @@ public abstract class AbstractItem implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID", nullable=false, unique=true)
 	private long id;
-	@Version
-    private int version;
 	@ManyToOne(cascade=CascadeType.REFRESH, fetch=FetchType.EAGER)
 	@JoinColumn(name="PARENT_ID")
     private Item parent;		// slightly different meaning for Item and History
@@ -432,14 +430,7 @@ public abstract class AbstractItem implements Serializable{
     public void setId(long id) {
         this.id = id;
     }
-    
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }    
+       
 
     public Item getParent() {
         return parent;

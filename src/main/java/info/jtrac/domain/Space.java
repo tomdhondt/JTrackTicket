@@ -59,9 +59,9 @@ public class Space implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID", nullable=false, unique=true)
     private long id;
-	@Version
-	@Column(name="VERSION")
-    private int version;
+//	@Version
+//	@Column(name="VERSION")
+//    private int version;
 	@Column(name="TYPE")
     private Integer type;
 	@Column(name="PREFIXCODE")
@@ -88,13 +88,13 @@ public class Space implements Serializable {
     
     //=======================================================
     
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }     
+//    public int getVersion() {
+//        return version;
+//    }
+//
+//    public void setVersion(int version) {
+//        this.version = version;
+//    }     
     
     public SpaceSequence getSpaceSequence() {
         return spaceSequence;
