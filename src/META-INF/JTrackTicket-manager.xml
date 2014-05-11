@@ -86,6 +86,10 @@
 			<ref bean="spaceManager"/>
 		</property>
 	</bean>
+		<bean id="spaceManager" class="main.java.info.jtrac.service.manager.SpaceManager">
+		<constructor-arg index="0" ref="abstractItemDAOImpl"/>
+		<constructor-arg index="1" ref="iAbstractItemMapper"/>
+	</bean>
 	<!-- 																								-->
 	<!-- 										Manager OBJECT 											-->
 	<!-- 																								-->
