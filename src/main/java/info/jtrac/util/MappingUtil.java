@@ -74,4 +74,34 @@ public abstract class MappingUtil {
 		}
 		return result;
 	}
+	/**
+	 * Method will map a String to Integer
+	 * @param value as String
+	 * @return result as Integer
+	 */
+	public static Integer mapStringToInteger(String value) {
+		Integer result = -1;
+		try{
+			if(null != value){
+				result = Integer.valueOf(value);
+			}
+		}catch(NumberFormatException nFe){
+		}
+		return result;
+	}
+	/**
+	 * Method will map a String to Integer
+	 * @param value as String
+	 * @return result as Integer
+	 */
+	public static String mapIntegerToString(Integer value) {
+		String result = "";
+		try{
+			if(null != value){
+				result = Integer.toString(value);
+			}
+		}catch(NumberFormatException nFe){
+		}
+		return result;
+	}
 }
