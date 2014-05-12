@@ -19,12 +19,12 @@ public class ItemManagerTest {
 	@Test
 	public void testScenario01(){
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
-		IManager<ItemDTO> itemManager = (IManager<ItemDTO>) context.getBean("itemManager");
+		IManager<ItemDTO> iItemManager = (IManager<ItemDTO>) context.getBean("iItemManager");
 		ItemDTO dto = null;
 		try {
-			itemManager.persist(dto);
+			iItemManager.persist(dto);
 		} catch (ManagerException e) {
-			assertEquals("Object.isNull",e.getMessage());
+			assertEquals("Object.isNull",e.getCaption());
 		}
 	}
 	/*
