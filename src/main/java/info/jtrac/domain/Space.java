@@ -72,7 +72,7 @@ public class Space implements Serializable {
     private boolean guestAllowed;
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "space", cascade = CascadeType.ALL)
     private SpaceSequence spaceSequence;
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "METADATA_ID")
     private Metadata metadata;
     /**

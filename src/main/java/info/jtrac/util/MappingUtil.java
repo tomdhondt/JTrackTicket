@@ -48,7 +48,13 @@ public abstract class MappingUtil {
 	 * @return result as String
 	 */
 	public static String parseInt(int object){
-		return  Integer.toString(object);
+		String result = "";
+		try{
+			Integer.toString(object);
+		}catch(Exception e){
+			result = "-1";
+		}
+		return  result;
 	}
 	/**
 	 * Method will map a String to a Double

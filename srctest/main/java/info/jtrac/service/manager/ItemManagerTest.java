@@ -69,38 +69,38 @@ public class ItemManagerTest {
 			assertNotNull(e.getCaption());
 			assertEquals("itemdto.editreason.isRequired", e.getCaption());
 		}
-//		SpaceDTO spaceDTOFound = null;
-//		SpaceDTO space = new SpaceDTO();
-//		space.setName("SpaceName");
-//		space.setDescription("Space description");
-//		try {
-//			iSpaceManager.persist(space);
-//			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
-//			list.add(new NameQueryParam(1,"name", "SpaceName"));
-//			List<SpaceDTO> result = iSpaceManager.findByCriteria(list,Space.NAMEDQUERY_FINDBYNAME);
-//			assertNotNull(result);
-//			spaceDTOFound = result.get(result.size()-1);
-//			assertNotNull(spaceDTOFound);
-//		} catch (ManagerException e) {
-//			assertNull(e);
-//		}		
-//		itemDTO.setSpace_Id(spaceDTOFound.getId());
-//		ItemDTO itemDTOFound = null;
-//		try {
-//			iItemManager.persist(itemDTO);
-//			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
-//			list.add(new NameQueryParam(1,"detail", "itemDetail"));
-//			List<ItemDTO> result = iItemManager.findByCriteria(list,Item.NAMEDQUERY_FINDBYDETAIL);
-//			assertNotNull(result);
-//			assertNotNull(result.get(result.size()-1));
-//			itemDTOFound = result.get(result.size()-1);
-//			assertEquals("detail", result.get(result.size()-1).getDetail());
-//			assertEquals(spaceDTOFound.getId(), result.get(result.size()-1).getSpace_Id());
-//			assertNotNull(result);
-//		} catch (ManagerException e) {
-//			assertNotNull(e.getCaption());
-//			assertEquals("itemdto.space.isrequired", e.getCaption());
-//		}
+		SpaceDTO spaceDTOFound = null;
+		SpaceDTO space = new SpaceDTO();
+		space.setName("SpaceName");
+		space.setDescription("Space description");
+		try {
+			iSpaceManager.persist(space);
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"name", "SpaceName"));
+			List<SpaceDTO> result = iSpaceManager.findByCriteria(list,Space.NAMEDQUERY_FINDBYNAME);
+			assertNotNull(result);
+			spaceDTOFound = result.get(result.size()-1);
+			assertNotNull(spaceDTOFound);
+		} catch (ManagerException e) {
+			assertNull(e);
+		}		
+		itemDTO.setSpace_Id(spaceDTOFound.getId());
+		ItemDTO itemDTOFound = null;
+		try {
+			iItemManager.persist(itemDTO);
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"detail", "itemDetail"));
+			List<ItemDTO> result = iItemManager.findByCriteria(list,Item.NAMEDQUERY_FINDBYDETAIL);
+			assertNotNull(result);
+			assertNotNull(result.get(result.size()-1));
+			itemDTOFound = result.get(result.size()-1);
+			assertEquals("detail", result.get(result.size()-1).getDetail());
+			assertEquals(spaceDTOFound.getId(), result.get(result.size()-1).getSpace_Id());
+			assertNotNull(result);
+		} catch (ManagerException e) {
+			assertNotNull(e.getCaption());
+			assertEquals("itemdto.space.isrequired", e.getCaption());
+		}
 //		try {
 //			spaceDAOImpl.delete(MappingUtil.mapStringToLong(spaceDTOFound.getId()));
 //			itemDAOImpl.delete(MappingUtil.mapStringToLong(itemDTOFound.getId()));

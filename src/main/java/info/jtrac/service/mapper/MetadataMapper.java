@@ -51,7 +51,11 @@ public class MetadataMapper extends AbstractMapper<Metadata, MetadataDTO>{
 			dto = new MetadataDTO();
 			dto.setId(MappingUtil.mapLongToString(object.getId()));
 			dto.setName(object.getName());
-			dto.setType(MappingUtil.parseInt(object.getType()));
+			if(null != object.getType()){
+				dto.setType(MappingUtil.parseInt(object.getType()));
+			}else{
+				dto.setType("-1");
+			}
 			dto.setDescription(object.getDescription());
 			dto.setXmlString(object.getXmlString());
 			if(null != object.getParent()){
