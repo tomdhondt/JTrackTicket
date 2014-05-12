@@ -1,5 +1,9 @@
 package main.java.info.jtrac.service.dto;
 
+import nl.knowlogy.validation.annotations.ValidateClass;
+import nl.knowlogy.validation.annotations.ValidateIsNotBlank;
+
+@ValidateClass
 public class ItemDTO extends AbstractItemDTO{
 	/*
 	 * Instance members
@@ -26,6 +30,7 @@ public class ItemDTO extends AbstractItemDTO{
 	/**
 	 * @return the space_Id
 	 */
+	@ValidateIsNotBlank(errorCode="itemdto.space.isrequired")
 	public String getSpace_Id() {
 		return space_Id;
 	}
@@ -116,6 +121,7 @@ public class ItemDTO extends AbstractItemDTO{
 	/**
 	 * @return the editReason
 	 */
+	@ValidateIsNotBlank(errorCode="itemdto.editreason.isRequired")
 	public String getEditReason() {
 		return editReason;
 	}

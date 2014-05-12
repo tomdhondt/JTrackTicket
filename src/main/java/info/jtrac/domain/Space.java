@@ -54,14 +54,12 @@ public class Space implements Serializable {
 	 * Serial version ID
 	 */
 	private static final long serialVersionUID = 2197347163582155379L;
+	public static final String NAMEDQUERY_FINDBYNAME = "Space_findByName";
 	/* Instance members */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID", nullable=false, unique=true)
     private long id;
-//	@Version
-//	@Column(name="VERSION")
-//    private int version;
 	@Column(name="TYPE")
     private Integer type;
 	@Column(name="PREFIXCODE")
