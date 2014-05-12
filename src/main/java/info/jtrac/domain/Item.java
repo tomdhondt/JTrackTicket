@@ -47,7 +47,7 @@ import org.apache.lucene.document.Field.Store;
 		{
 			@NamedQuery(
 			name = "findByDetail",
-			query = "FROM item i WHERE i.detail = :detail"
+			query = "FROM Item i WHERE i.detail = :detail"
 			)
 		}
 	)
