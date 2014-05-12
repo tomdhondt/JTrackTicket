@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.info.jtrac.dao.NameQueryParam;
-import main.java.info.jtrac.dao.SpaceDAOImpl;
+import main.java.info.jtrac.domain.Item;
 import main.java.info.jtrac.domain.Space;
 import main.java.info.jtrac.exception.manager.ManagerException;
 import main.java.info.jtrac.service.dto.ItemDTO;
@@ -57,6 +57,7 @@ public class ItemManagerTest {
 		IManager<ItemDTO> iItemManager = (IManager<ItemDTO>) context.getBean("iItemManager");
 		IManager<SpaceDTO> iSpaceManager = (IManager<SpaceDTO>) context.getBean("iSpaceManager");
 		ItemDTO itemDTO = new ItemDTO();
+		itemDTO.setDetail("itemDetail");
 		try {
 			iItemManager.persist(itemDTO);
 		} catch (ManagerException e) {
@@ -81,6 +82,10 @@ public class ItemManagerTest {
 		itemDTO.setSpace_Id(spacePersisted.getId());
 		try {
 			iItemManager.persist(itemDTO);
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"detail", "itemDetail"));
+			List<ItemDTO> result = iItemManager.findByCriteria(list,Item.NAMEDQUERY_FINDBYDETAIL);
+			
 		} catch (ManagerException e) {
 			assertNotNull(e.getCaption());
 			assertEquals("itemdto.space.isrequired", e.getCaption());

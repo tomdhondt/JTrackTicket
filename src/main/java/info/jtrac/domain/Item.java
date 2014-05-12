@@ -46,8 +46,8 @@ import org.apache.lucene.document.Field.Store;
 @NamedQueries(
 		{
 			@NamedQuery(
-			name = "findByName",
-			query = "FROM item i WHERE i.name = :name"
+			name = "findByDetail",
+			query = "FROM item i WHERE i.detail = :detail"
 			)
 		}
 	)
@@ -56,7 +56,7 @@ public class Item extends AbstractItem {
 	 * Serial version ID
 	 */
 	private static final long serialVersionUID = 2587433115333525338L;
-	public static final String NAMEDQUERY_FINDBYNAME = "findByName";
+	public static final String NAMEDQUERY_FINDBYDETAIL = "findByDetail";
 	/* Instance members*/
 	@Column(name="type")
     private Integer type;
