@@ -27,6 +27,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,11 +43,21 @@ import org.apache.lucene.document.Field.Store;
  */
 @Entity
 @Table(name="ITEM")
+@NamedQueries(
+		{
+			@NamedQuery(
+			name = "findByName",
+			query = "FROM item i WHERE i.name = :name"
+			)
+		}
+	)
 public class Item extends AbstractItem {
 	/**
 	 * Serial version ID
 	 */
 	private static final long serialVersionUID = 2587433115333525338L;
+	public static final String NAMEDQUERY_FINDBYNAME = "findByName";
+	/* Instance members*/
 	@Column(name="type")
     private Integer type;
 	@ManyToOne(cascade=CascadeType.REFRESH, fetch=FetchType.EAGER)
