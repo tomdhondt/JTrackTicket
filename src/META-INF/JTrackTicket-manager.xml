@@ -86,9 +86,24 @@
 			<ref bean="spaceManager"/>
 		</property>
 	</bean>
-		<bean id="spaceManager" class="main.java.info.jtrac.service.manager.SpaceManager">
-		<constructor-arg index="0" ref="abstractItemDAOImpl"/>
-		<constructor-arg index="1" ref="iAbstractItemMapper"/>
+	<bean id="itemManager" class="main.java.info.jtrac.service.manager.SpaceManager">
+		<constructor-arg index="0" ref="itemDAOImpl"/>
+		<constructor-arg index="1" ref="itemMapper"/>
+	</bean>
+	<bean id="iItemManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>main.java.info.jtrac.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>managerObjectIsNull</value>
+				<value>jValidate</value>
+				<!-- <value>afterObjectIsManaged</value> -->
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="itemManager"/>
+		</property>
 	</bean>
 	<!-- 																								-->
 	<!-- 										Manager OBJECT 											-->

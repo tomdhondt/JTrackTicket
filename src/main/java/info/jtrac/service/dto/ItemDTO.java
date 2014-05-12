@@ -4,23 +4,24 @@ public class ItemDTO extends AbstractItemDTO{
 	/*
 	 * Instance members
 	 */
-	private String id;
+    private String type;
     private String space_Id;
     private String space_Type;
     private String space_PrefixCode;
     private String space_Name;
     private String space_Description;
     private boolean space_isGuestAllowed;
+    private String sequenceNum;
+    private String editReason;
 //    private Set<History> history;
 //    private Set<Item> children;
 //    private Set<Attachment> attachments;
     // should be ideally in form backing object but for convenience
-    private String editReason;
 	/**
-	 * @return the id
+	 * @return the type
 	 */
-	public String getId() {
-		return id;
+	public String getType() {
+		return type;
 	}
 	/**
 	 * @return the space_Id
@@ -59,16 +60,10 @@ public class ItemDTO extends AbstractItemDTO{
 		return space_isGuestAllowed;
 	}
 	/**
-	 * @return the editReason
+	 * @param type the type to set
 	 */
-	public String getEditReason() {
-		return editReason;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
+	public void setType(String type) {
+		this.type = type;
 	}
 	/**
 	 * @param space_Id the space_Id to set
@@ -107,6 +102,24 @@ public class ItemDTO extends AbstractItemDTO{
 		this.space_isGuestAllowed = space_isGuestAllowed;
 	}
 	/**
+	 * @return the sequenceNum
+	 */
+	public String getSequenceNum() {
+		return sequenceNum;
+	}
+	/**
+	 * @param sequenceNum the sequenceNum to set
+	 */
+	public void setSequenceNum(String sequenceNum) {
+		this.sequenceNum = sequenceNum;
+	}
+	/**
+	 * @return the editReason
+	 */
+	public String getEditReason() {
+		return editReason;
+	}
+	/**
 	 * @param editReason the editReason to set
 	 */
 	public void setEditReason(String editReason) {
@@ -120,8 +133,8 @@ public class ItemDTO extends AbstractItemDTO{
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result
-				+ ((editReason == null) ? 0 : editReason.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+				+ ((space_Name == null) ? 0 : space_Name.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 	/* (non-Javadoc)
@@ -136,15 +149,15 @@ public class ItemDTO extends AbstractItemDTO{
 		if (getClass() != obj.getClass())
 			return false;
 		ItemDTO other = (ItemDTO) obj;
-		if (editReason == null) {
-			if (other.editReason != null)
+		if (space_Name == null) {
+			if (other.space_Name != null)
 				return false;
-		} else if (!editReason.equals(other.editReason))
+		} else if (!space_Name.equals(other.space_Name))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (type == null) {
+			if (other.type != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!type.equals(other.type))
 			return false;
 		return true;
 	}
@@ -153,11 +166,12 @@ public class ItemDTO extends AbstractItemDTO{
 	 */
 	@Override
 	public String toString() {
-		return "ItemDTO [id=" + id + ", space_Id=" + space_Id + ", space_Type="
-				+ space_Type + ", space_PrefixCode=" + space_PrefixCode
-				+ ", space_Name=" + space_Name + ", space_Description="
-				+ space_Description + ", space_isGuestAllowed="
-				+ space_isGuestAllowed + ", editReason=" + editReason + "]";
+		return "ItemDTO [type=" + type + ", space_Id=" + space_Id
+				+ ", space_Type=" + space_Type + ", space_PrefixCode="
+				+ space_PrefixCode + ", space_Name=" + space_Name
+				+ ", space_Description=" + space_Description
+				+ ", space_isGuestAllowed=" + space_isGuestAllowed + "]";
 	}
+
     
 }

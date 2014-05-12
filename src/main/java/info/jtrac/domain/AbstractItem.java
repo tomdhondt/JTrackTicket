@@ -34,7 +34,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import javax.persistence.Version;
 
 import main.java.info.jtrac.util.DateUtils;
 
