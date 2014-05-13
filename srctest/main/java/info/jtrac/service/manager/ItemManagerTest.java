@@ -9,17 +9,52 @@ import main.java.info.jtrac.dao.IPersistenceDAOImpl;
 import main.java.info.jtrac.dao.NameQueryParam;
 import main.java.info.jtrac.domain.Item;
 import main.java.info.jtrac.domain.Space;
+import main.java.info.jtrac.domain.User;
 import main.java.info.jtrac.exception.data.DataDAOException;
 import main.java.info.jtrac.exception.manager.ManagerException;
 import main.java.info.jtrac.service.dto.ItemDTO;
 import main.java.info.jtrac.service.dto.SpaceDTO;
+import main.java.info.jtrac.service.dto.UserDTO;
 import main.java.info.jtrac.util.MappingUtil;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+@SuppressWarnings("unchecked")
 public class ItemManagerTest {
+	/* instance member */
+	private UserDTO loggedBy;
+	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
+	IManager<UserDTO> iUserManager = (IManager<UserDTO>) context.getBean("iUserManager");
+	IPersistenceDAOImpl<User> userDAOImpl = (IPersistenceDAOImpl<User>) context.getBean("userDAOImpl");
+	@Before
+	public void testBefore(){
+		this.loggedBy = new UserDTO();
+		this.loggedBy.setEmail("tomdhondt@hotmail.com");
+		this.loggedBy.setId("");
+		this.loggedBy.setLocked(false);
+		this.loggedBy.setLocale("EN");
+		this.loggedBy.setLoginName("tom.dhondt");
+		this.loggedBy.setName("Tom D'hondt");
+		this.loggedBy.setPassword("1234");
+		this.loggedBy.setType("0");
+		this.loggedBy.setActive(true);
+		this.loggedBy.setUserRole("ADMIN");
+		try {
+			this.iUserManager.persist(this.loggedBy);
+		} catch (ManagerException e) {
+			assertNull(e);
+		}
+		try{
+			List<NameQueryParam> list = new ArrayList<NameQueryParam>();
+			list.add(new NameQueryParam(1,"loginName","tom.dhondt"));
+			List<UserDTO> listDTO =  this.iUserManager.findByCriteria(list, User.NAMEDQUERY_FINDBYLOGINNAME);
+			this.loggedBy.setId(listDTO.get(listDTO.size()-1).getId());
+		}catch (ManagerException e) {
+			assertNull(e);
+		}
+	}
 	/*
 	 * Scenario 01:
 	 * 01 - create a null object
@@ -63,12 +98,16 @@ public class ItemManagerTest {
 		IPersistenceDAOImpl<Space> spaceDAOImpl = (IPersistenceDAOImpl<Space>) context.getBean("spaceDAOImpl");
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setDetail("itemDetail");
+		itemDTO.setUser_loggedBy_Id(this.loggedBy.getId());
+		itemDTO.setUser_assignedTo_Id(this.loggedBy.getId());
 		try {
 			iItemManager.persist(itemDTO);
 		} catch (ManagerException e) {
 			assertNotNull(e.getCaption());
 			assertEquals("itemdto.editreason.isRequired", e.getCaption());
 		}
+		// set the EditReason
+		itemDTO.setEditReason("new editReason");
 		SpaceDTO spaceDTOFound = null;
 		SpaceDTO space = new SpaceDTO();
 		space.setName("SpaceName");

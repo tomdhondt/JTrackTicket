@@ -71,6 +71,7 @@ public class User implements  Serializable {
 	 * Serial version id
 	 */
 	private static final long serialVersionUID = 3209224798300962218L;
+	public static final String NAMEDQUERY_FINDBYLOGINNAME = "findByLoginName";
 	/* Instance members */
     public static final int SEARCH_NAME = 0;
     public static final int SEARCH_LOGIN_NAME = 1;

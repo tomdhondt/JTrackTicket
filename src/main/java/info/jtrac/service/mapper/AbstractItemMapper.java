@@ -14,7 +14,7 @@ import main.java.info.jtrac.service.dto.AbstractItemDTO;
 import main.java.info.jtrac.util.MappingUtil;
 
 @SuppressWarnings("unchecked")
-public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractItemDTO>{
+public abstract class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractItemDTO>{
 	@Override
 	/**
 	 * Method will map a DTO to a Object
@@ -42,11 +42,11 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 				}
 			};
 			object.setId(MappingUtil.mapStringToLong(dto.getId()));
-			object.setParent(this.getItem(MappingUtil.mapStringToLong(dto.getParent_Item_Id())));
+			object.setParent(AbstractItemMapper.getItem(MappingUtil.mapStringToLong(dto.getParent_Item_Id())));
 			object.setSummary(dto.getSummary());
 			object.setDetail(dto.getDetail());
-			object.setLoggedBy(this.getUser(MappingUtil.mapStringToLong(dto.getUser_loggedBy_Id())));
-			object.setAssignedTo(this.getUser(MappingUtil.mapStringToLong(dto.getUser_assignedTo_Id())));
+			object.setLoggedBy(AbstractItemMapper.getUser(MappingUtil.mapStringToLong(dto.getUser_loggedBy_Id())));
+			object.setAssignedTo(AbstractItemMapper.getUser(MappingUtil.mapStringToLong(dto.getUser_assignedTo_Id())));
 			object.setPlannedEffort(MappingUtil.mapStringToDouble(dto.getPlannedEffort()));
 			object.setStatus(MappingUtil.mapStringToInteger(dto.getStatus()));
 			object.setSeverity(MappingUtil.mapStringToInteger(dto.getStatus()));				// Integer
@@ -91,8 +91,8 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 			dto.setId(MappingUtil.mapLongToString(object.getId()));
 			dto.setParent_Item_Id(MappingUtil.mapLongToString(object.getParent().getId()));
 			dto.setParent_Item_EditReason(object.getParent().getEditReason());
-			dto.setSummary(dto.getSummary());
-			dto.setDetail(dto.getDetail());
+			dto.setSummary(object.getSummary());
+			dto.setDetail(object.getDetail());
 			dto.setUser_loggedBy_Id(MappingUtil.mapLongToString(object.getLoggedBy().getId()));
 			dto.setUser_loggedBy_name(object.getLoggedBy().getName());
 			dto.setUser_loggedBy_loginName(object.getLoggedBy().getLoginName());
@@ -132,7 +132,7 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 	/*
 	 * Method will get the reference user out the database
 	 */
-	private User getUser(long id){
+	public static User getUser(long id){
 		User user = null;
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
 		IPersistenceDAOImpl<User> userDAOImpl = (IPersistenceDAOImpl<User>) context.getBean("userDAOImpl");
@@ -145,7 +145,7 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 	/*
 	 * Method will get the reference Item out the database
 	 */
-	private Item getItem(long id){
+	public static Item getItem(long id){
 		Item item = null;
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
 		IPersistenceDAOImpl<Item> itemDAOImpl = (IPersistenceDAOImpl<Item>) context.getBean("itemDAOImpl");
