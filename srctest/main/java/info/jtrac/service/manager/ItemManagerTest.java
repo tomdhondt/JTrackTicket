@@ -98,8 +98,7 @@ public class ItemManagerTest {
 			assertEquals(spaceDTOFound.getId(), result.get(result.size()-1).getSpace_Id());
 			assertNotNull(result);
 		} catch (ManagerException e) {
-			assertNotNull(e.getCaption());
-			assertEquals("itemdto.space.isrequired", e.getCaption());
+			assertEquals("itemdto.space.isRequired", e.getCaption());
 		}
 //		try {
 //			spaceDAOImpl.delete(MappingUtil.mapStringToLong(spaceDTOFound.getId()));
