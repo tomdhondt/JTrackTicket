@@ -14,7 +14,7 @@ import main.java.info.jtrac.service.dto.AbstractItemDTO;
 import main.java.info.jtrac.util.MappingUtil;
 
 @SuppressWarnings("unchecked")
-public abstract class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractItemDTO>{
+public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractItemDTO>{
 	@Override
 	/**
 	 * Method will map a DTO to a Object

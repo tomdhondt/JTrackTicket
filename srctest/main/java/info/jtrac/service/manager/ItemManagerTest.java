@@ -17,6 +17,7 @@ import main.java.info.jtrac.service.dto.SpaceDTO;
 import main.java.info.jtrac.service.dto.UserDTO;
 import main.java.info.jtrac.util.MappingUtil;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -61,7 +62,6 @@ public class ItemManagerTest {
 	 * 02 - persist to the database
 	 * 03 - catch the exception
 	 */
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testScenario01(){
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
@@ -89,7 +89,6 @@ public class ItemManagerTest {
 	 * 12 - delete the persisted object in the database
 	 */
 	@Test
-	@SuppressWarnings("unchecked")
 	public void testScenario02() {
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
 		IManager<ItemDTO> iItemManager = (IManager<ItemDTO>) context.getBean("iItemManager");
@@ -133,17 +132,25 @@ public class ItemManagerTest {
 			assertNotNull(result);
 			assertNotNull(result.get(result.size()-1));
 			itemDTOFound = result.get(result.size()-1);
-			assertEquals("detail", result.get(result.size()-1).getDetail());
+			assertEquals("itemDetail", result.get(result.size()-1).getDetail());
 			assertEquals(spaceDTOFound.getId(), result.get(result.size()-1).getSpace_Id());
 			assertNotNull(result);
 		} catch (ManagerException e) {
 			assertEquals("itemdto.space.isRequired", e.getCaption());
 		}
-//		try {
-//			spaceDAOImpl.delete(MappingUtil.mapStringToLong(spaceDTOFound.getId()));
-//			itemDAOImpl.delete(MappingUtil.mapStringToLong(itemDTOFound.getId()));
-//		} catch (DataDAOException e) {
-//			assertNull(e);
-//		}
+		try {
+			itemDAOImpl.delete(MappingUtil.mapStringToLong(itemDTOFound.getId()));
+			spaceDAOImpl.delete(MappingUtil.mapStringToLong(spaceDTOFound.getId()));
+		} catch (DataDAOException e) {
+			assertNull(e);
+		}
+	}
+	@After
+	public void testAfter(){
+		try {
+			userDAOImpl.delete(MappingUtil.mapStringToLong(this.loggedBy.getId()));
+		} catch (DataDAOException e) {
+			assertNull(e);
+		}
 	}
 }
