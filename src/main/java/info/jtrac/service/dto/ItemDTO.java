@@ -1,5 +1,8 @@
 package main.java.info.jtrac.service.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import nl.knowlogy.validation.annotations.ValidateClass;
 import nl.knowlogy.validation.annotations.ValidateIsNotBlank;
 
@@ -18,9 +21,15 @@ public class ItemDTO extends AbstractItemDTO{
     private String sequenceNum;
     private String editReason;
 //    private Set<History> history;
-//    private Set<Item> children;
+    private Map<String, String> children;
 //    private Set<Attachment> attachments;
     // should be ideally in form backing object but for convenience
+    /**
+     * Default constructor for the class
+     */
+    public ItemDTO(){
+    	this.children = new HashMap<String, String>();
+    }
 	/**
 	 * @return the type
 	 */
@@ -130,6 +139,12 @@ public class ItemDTO extends AbstractItemDTO{
 	 */
 	public void setEditReason(String editReason) {
 		this.editReason = editReason;
+	}
+	/**
+	 * @return the children
+	 */
+	public Map<String, String> getChildren() {
+		return children;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

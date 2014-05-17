@@ -35,8 +35,9 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 			object.setSpace(space);
 			object.setSequenceNum(MappingUtil.mapStringToLong(dto.getSequenceNum()));
 			object.setEditReason(dto.getEditReason());
+			// add the children items to the Item
+//			object.getChildren().add()
 //		    private Set<History> history;
-//		    private Set<Item> children;
 //		    private Set<Attachment> attachments;
 			object.setId(MappingUtil.mapStringToLong(dto.getId()));
 			object.setParent(AbstractItemMapper.getItem(MappingUtil.mapStringToLong(dto.getParent_Item_Id())));
