@@ -25,6 +25,49 @@ public class Email{
 	 */
 	public Email(){
 	}
+	
+	/**
+	 * @return the email_To
+	 */
+	public String getEmail_To() {
+		return email_To;
+	}
+
+	/**
+	 * @return the email_From
+	 */
+	public String getEmail_From() {
+		return email_From;
+	}
+
+	/**
+	 * @return the email_Subject
+	 */
+	public String getEmail_Subject() {
+		return email_Subject;
+	}
+
+	/**
+	 * @param email_To the email_To to set
+	 */
+	public void setEmail_To(String email_To) {
+		this.email_To = email_To;
+	}
+
+	/**
+	 * @param email_From the email_From to set
+	 */
+	public void setEmail_From(String email_From) {
+		this.email_From = email_From;
+	}
+
+	/**
+	 * @param email_Subject the email_Subject to set
+	 */
+	public void setEmail_Subject(String email_Subject) {
+		this.email_Subject = email_Subject;
+	}
+
 	/*
 	 * Method will initialize the mailProperties 
 	 */

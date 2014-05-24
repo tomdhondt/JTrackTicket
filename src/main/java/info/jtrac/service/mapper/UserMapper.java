@@ -57,7 +57,9 @@ public class UserMapper extends AbstractMapper<User, UserDTO>{
 			dto.setPassword(object.getPassword());
 			dto.setType(Integer.toString(object.getType()));
 			dto.setActive(object.isActive());
-			dto.setUserRole(object.getUserRole().getRole());
+			if(null != object.getUserRole()){
+				dto.setUserRole(object.getUserRole().getRole());
+			}
 			//TODO implement the UserDTO properties
 //			object.setUserSpaceRoles(userSpaceRoles);
 //			object.setMetadata(metadata);
