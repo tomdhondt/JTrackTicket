@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import main.java.info.jtrac.domain.Item;
+import main.java.info.jtrac.service.dto.ItemDTO;
 
 public class Email{
 	/* Instance members */
@@ -103,7 +103,7 @@ public class Email{
 	 * @param item as Item
 	 * @return boolean as success rate
 	 */
-	public boolean sendItemStatusMail(Item item){
+	public boolean sendItemStatusMail(ItemDTO item){
 		boolean success = false;
         try {
             Message message = new MimeMessage(this.getSession(this.getProperties(), this.getAuthenticator()));
@@ -125,7 +125,7 @@ public class Email{
 	 * @param item as Item
 	 * @return String as messageContent, Null when the Item is null
 	 */
-	private String  createItemStatusMailBody(Item item){
+	private String  createItemStatusMailBody(ItemDTO item){
 		String mailMessage = null;
 		if(null != item){
 			StringBuilder mail = new StringBuilder();
@@ -153,7 +153,7 @@ public class Email{
 			mail.append("				<td class=\"tableDetail\" style=\"border: 1px solid black; width:15%\">ITEM STATE</td>");
 			mail.append("				<td class=\"tableDetail\" style=\"border: 1px solid black; width:35%\">" + item.getStatus() + "</td>");
 			mail.append("				<td class=\"tableDetail\" style=\"border: 1px solid black; width:15%\">ALLOCATED TO</td>");
-			mail.append("				<td class=\"tableDetail\" style=\"border: 1px solid black; width:35%\">" + item.getAssignedTo().getName() + "</td>");
+			mail.append("				<td class=\"tableDetail\" style=\"border: 1px solid black; width:35%\">" + item.getUser_assignedTo_name() + "</td>");
 			mail.append("			</tr>");
 			mail.append("		</table>");
 			mail.append("	<div>");
