@@ -28,7 +28,7 @@ public class SpaceDAOImplTest {
 	Logger logger = Logger.getRootLogger();
 	private Metadata metaData;
 	private Metadata metaDataParent;
-	@Before
+	//@Before
 	public void testBefore(){
 		this.metaDataParent = new Metadata();
 		this.metaData = new Metadata(); 
@@ -54,7 +54,7 @@ public class SpaceDAOImplTest {
 	 * 01 - create a Space = null
 	 * 02 - persist to the database and catch the exception
 	 */
-	@Test
+	//@Test
 	public void testScenario01() {
 		Space space = null;
 		try {
@@ -94,14 +94,14 @@ public class SpaceDAOImplTest {
 		} catch (DataDAOException e) {
 			assertNull(e);
 		}
-		try {
-			iPersistenceSpaceDAOImpl.delete(space.getId());
-			iPersistenceSpaceSequenceDAOImpl.delete(space.getSpaceSequence().getId());
-		} catch (DataDAOException e) {
-			assertNull(e);
-		}
+//		try {
+//			iPersistenceSpaceDAOImpl.delete(space.getId());
+//			iPersistenceSpaceSequenceDAOImpl.delete(space.getSpaceSequence().getId());
+//		} catch (DataDAOException e) {
+//			assertNull(e);
+//		}
 	}
-	@After
+	//@After
 	public void testAfter(){
 		try {
 			List<NameQueryParam> list = new ArrayList<NameQueryParam>();

@@ -31,7 +31,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Version;
 /**
  * A JTrac installation can be divided into different project
  * areas or workspaces.  The Space entity represents this concept.

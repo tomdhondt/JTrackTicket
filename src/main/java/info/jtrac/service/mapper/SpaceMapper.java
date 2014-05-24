@@ -36,7 +36,11 @@ public class SpaceMapper extends AbstractMapper<Space, SpaceDTO>{
 			object.setGuestAllowed(dto.isGuestAllowed());
 			object.setName(dto.getName());
 			object.setPrefixCode(dto.getPrefixCode());
-			object.setType(MappingUtil.parseInt(dto.getType()));
+			if(null != dto.getType()){
+				object.setType(MappingUtil.parseInt(dto.getType()));
+			}else{
+				object.setType(0);
+			}
 			/* Map the Metadata */
 			try{
 				MetadataDTO mDTO = iMetadataManager.findByID(MappingUtil.parseInt(dto.getMd_Id()));
