@@ -138,6 +138,7 @@ public class Metadata implements Serializable {
      * Default constructor
      */
     public Metadata() {
+        this.type = 0;
         init();
     }
     

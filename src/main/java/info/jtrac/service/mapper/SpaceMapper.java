@@ -38,8 +38,6 @@ public class SpaceMapper extends AbstractMapper<Space, SpaceDTO>{
 			object.setPrefixCode(dto.getPrefixCode());
 			if(null != dto.getType()){
 				object.setType(MappingUtil.parseInt(dto.getType()));
-			}else{
-				object.setType(0);
 			}
 			/* Map the Metadata */
 			try{
@@ -84,7 +82,9 @@ public class SpaceMapper extends AbstractMapper<Space, SpaceDTO>{
 			dto.setGuestAllowed(object.isGuestAllowed());
 			dto.setName(object.getName());
 			dto.setPrefixCode(object.getPrefixCode());
-			dto.setType(MappingUtil.parseInt(object.getType()));
+			if(null != dto.getType()){
+				dto.setType(MappingUtil.parseInt(object.getType()));
+			}
 			/* Map the MetadataDTO */
 			try{
 				MetadataDTO mObject = iMetadataMapper.mapToDTO(object.getMetadata());

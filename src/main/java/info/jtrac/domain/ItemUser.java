@@ -64,7 +64,7 @@ public class ItemUser implements Serializable {
     private int type;
     
     public ItemUser() {
-        // zero arg constructor
+        this.type = 0;
     }
     
     public ItemUser(User user) {

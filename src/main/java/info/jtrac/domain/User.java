@@ -112,6 +112,7 @@ public class User implements  Serializable {
 	 * Default constructor for the class
 	 */
    public User(){
+       this.type = 0;
 	   this.active = true;
    }
     public void addSpaceWithRole(Space space, String roleKey) {        

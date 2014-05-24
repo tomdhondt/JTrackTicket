@@ -81,6 +81,7 @@ public class Space implements Serializable {
         spaceSequence = new SpaceSequence();
         spaceSequence.setSpace(this);
         metadata = new Metadata();
+        this.setType(0);
     }
     
     //=======================================================
