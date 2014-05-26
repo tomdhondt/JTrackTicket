@@ -1,4 +1,7 @@
 package main.java.info.jtrac.service.dto;
+
+import java.util.Date;
+
 /**
  * 
  * Class AbstractItem as DTO Object
@@ -22,7 +25,7 @@ public class AbstractItemDTO {
     private String user_assignedTo_loginName;
     private String user_assignedTo_name;
     private String user_assignedTo_email;
-    private String timeStamp;					// Date
+    private Date timeStamp;					// Date
     private String plannedEffort;			// Double
     private String status;					// Integer
     private String severity;				// Integer
@@ -134,7 +137,7 @@ public class AbstractItemDTO {
 	/**
 	 * @return the timeStamp
 	 */
-	public String getTimeStamp() {
+	public Date getTimeStamp() {
 		return timeStamp;
 	}
 	/**
@@ -368,7 +371,7 @@ public class AbstractItemDTO {
 	/**
 	 * @param timeStamp the timeStamp to set
 	 */
-	public void setTimeStamp(String timeStamp) {
+	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 	/**
