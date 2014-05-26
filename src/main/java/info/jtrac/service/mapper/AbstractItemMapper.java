@@ -49,6 +49,7 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 			object.setAssignedTo(AbstractItemMapper.getUser(MappingUtil.mapStringToLong(dto.getUser_assignedTo_Id())));
 			object.setPlannedEffort(MappingUtil.mapStringToDouble(dto.getPlannedEffort()));
 			object.setStatus(MappingUtil.mapStringToInteger(dto.getStatus()));
+			object.setTimeStamp(dto.getTimeStamp());
 			object.setSeverity(MappingUtil.mapStringToInteger(dto.getStatus()));				// Integer
 			object.setPriority(MappingUtil.mapStringToInteger(dto.getPriority()));				// Integer
 			object.setCusInt01(MappingUtil.mapStringToInteger(dto.getCusInt01()));				// Integer
@@ -93,6 +94,7 @@ public class AbstractItemMapper extends AbstractMapper<AbstractItem, AbstractIte
 			dto.setParent_Item_EditReason(object.getParent().getEditReason());
 			dto.setSummary(object.getSummary());
 			dto.setDetail(object.getDetail());
+			dto.setTimeStamp(object.getTimeStamp());
 			dto.setUser_loggedBy_Id(MappingUtil.mapLongToString(object.getLoggedBy().getId()));
 			dto.setUser_loggedBy_name(object.getLoggedBy().getName());
 			dto.setUser_loggedBy_loginName(object.getLoggedBy().getLoginName());
