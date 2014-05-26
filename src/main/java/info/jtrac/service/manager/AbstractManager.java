@@ -51,6 +51,34 @@ public abstract class AbstractManager<D,T> implements IManager<D> {
 		return resultList;
 	}
 	/**
+	 * Method will return all the objects<T>
+	 * @param type as Class<T>
+	 * @return objects as List<T>
+	 * @throws  ManagerException
+	 */
+	@Override
+	public List<D> findAll(int count) throws ManagerException{
+		List<D> resultList = null;
+		try{
+			/* initiate the List<D> */
+			resultList = new ArrayList<D>(); 
+			/* get the object out the Database */
+			List<T> objectList = this.daoImpl.findAll(count);
+			/* iterate the list */
+			for(T obj : objectList){
+				/* map the Object to DTO and add to the resultList */
+				try{
+					resultList.add(this.mapper.mapToDTO(obj));
+				}catch(MapperException mXe){
+					throw new ManagerException(mXe.getCaption());
+				}
+			}
+		}catch(Exception e){
+			new ManagerException("manager.findAll.error");
+		}
+		return resultList;
+	}
+	/**
 	 * Method will find the object T by id
 	 * @param id as int
 	 * @return T as found object
@@ -122,6 +150,29 @@ public abstract class AbstractManager<D,T> implements IManager<D> {
 		List<T> listQueryResult = null;
 		try {
 			listQueryResult = (List<T>) this.daoImpl.findByCriteria(list, namedQuery);
+		} catch (DataDAOException dXe) {
+			throw new ManagerException(dXe.getCaption());
+		}
+		for(T object : listQueryResult){
+			try {
+				listResult.add(this.mapper.mapToDTO(object));
+			} catch (MapperException dXe) {
+				throw new ManagerException(dXe.getCaption());
+			}
+		}
+		return listResult;
+	}
+	/**
+	 * Method will find a object based on the criteria of the object
+	 * @param Object as T
+	 * @return T as result
+	 */
+	@Override
+	public List<D> findByCriteria(List<NameQueryParam> list , String namedQuery, int count) throws ManagerException{
+		List<D> listResult = new ArrayList<>();
+		List<T> listQueryResult = null;
+		try {
+			listQueryResult = (List<T>) this.daoImpl.findByCriteria(list, namedQuery, count);
 		} catch (DataDAOException dXe) {
 			throw new ManagerException(dXe.getCaption());
 		}

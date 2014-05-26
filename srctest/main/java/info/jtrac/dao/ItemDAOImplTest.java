@@ -1,6 +1,9 @@
 package main.java.info.jtrac.dao;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import main.java.info.jtrac.domain.Attachment;
 import main.java.info.jtrac.domain.History;
 import main.java.info.jtrac.domain.Item;
@@ -202,6 +205,17 @@ public class ItemDAOImplTest {
 //		} catch (DataDAOException e) {
 //			assertNull(e);
 //		}
+	}
+	@Test
+	public void testFindAllCount(){
+		List<Item> listItem;
+		try {
+			listItem = iPersistenceItemDAOImpl.findAll(2);
+			assertNotNull(listItem);
+			assertTrue(listItem.size() == 2);
+		} catch (DataDAOException e) {
+			assertNull(e);
+		}
 	}
 
 }

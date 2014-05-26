@@ -25,12 +25,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 /**
  * A JTrac installation can be divided into different project
  * areas or workspaces.  The Space entity represents this concept.
@@ -71,8 +70,9 @@ public class Space implements Serializable {
     private boolean guestAllowed;
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "space", cascade = CascadeType.ALL)
     private SpaceSequence spaceSequence;
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name = "METADATA_ID")
+//	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@JoinColumn(name = "METADATA_ID")
+	@Transient
     private Metadata metadata;
     /**
      * default constructor for the Class

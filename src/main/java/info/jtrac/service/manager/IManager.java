@@ -21,6 +21,14 @@ public interface IManager <T>{
 	 */
 	public List<T> findAll() throws ManagerException;
 	/**
+	 * Method will return all the objects<T>
+	 * @param type as Class<T>
+	 * @param count as Integer
+	 * @return objects as List<T>
+	 * @throws  
+	 */
+	public List<T> findAll(int count) throws ManagerException;
+	/**
 	 * Method will remove the object out the database
 	 * @param entity as T
 	 * @return boolean as success rate
@@ -39,6 +47,13 @@ public interface IManager <T>{
 	 * @return T as result
 	 */
 	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery) throws ManagerException;
+	/**
+	 * Method will find a object based on the criteria of the object
+	 * @param Object as T
+	 * @param count as Integer
+	 * @return T as result
+	 */
+	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery, int count) throws ManagerException;
 	/**
 	 * Method will update the object in the database
 	 * @param object as T

@@ -64,6 +64,39 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 		return result;
 	}
 	/**
+	 * Method will find a object in the database based on the criteria of the object.
+	 * @param Object as T
+	 * @param count as int
+	 * @return Set<T> as resultSet
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery, int count) throws DataDAOException {
+		List<T> result = null;
+		if(null != namedQuery && null != list){
+			ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
+			SessionFactory sessionFactory_JTrackTicket = (SessionFactory) context.getBean("sessionFactory_JTrack");
+			try{
+				sessionFactory_JTrackTicket.getCurrentSession().getTransaction().begin();
+				Query q = sessionFactory_JTrackTicket.getCurrentSession().getNamedQuery(namedQuery);
+				Collections.sort(list);
+				for(NameQueryParam nQp : list){
+					q.setString(nQp.getVarName(), nQp.getValue());
+				}
+				if(count <= 0){
+					q.setMaxResults(1);
+				}else{
+					q.setMaxResults(count);
+				}
+				result = q.list();
+				sessionFactory_JTrackTicket.getCurrentSession().getTransaction().commit();			
+			}catch(Exception e){
+				throw new DataDAOException("object.findAll.error",e.getStackTrace());
+			}
+		}
+		return result;
+	}
+	/**
 	 * Method will persist the object in the database
 	 */
 	@Override
@@ -125,6 +158,35 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 		try{
 			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
 			Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery("FROM " + this.getType().getName());
+			resultList = query.list();
+			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+		}catch(HibernateException hEx){
+			logger.error(hEx.getMessage());
+			throw new DataDAOException("object.findAll.error",hEx.getStackTrace());
+		}
+		return resultList;
+	}
+	/**
+	 * Method will return all the objects<T>
+	 * @param type as Class<T>
+	 * @return objects as List<T>
+	 * <li>the list equals null when there could not found a result</li>
+	 * @throws DataDAOException
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findAll(int count) throws DataDAOException{
+		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
+		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
+		List<T> resultList = null;
+		try{
+			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
+			Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery("FROM " + this.getType().getName());
+			if(count <=0){
+				query.setMaxResults(1);
+			}else{
+				query.setMaxResults(count);	
+			}
 			resultList = query.list();
 			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
 		}catch(HibernateException hEx){
