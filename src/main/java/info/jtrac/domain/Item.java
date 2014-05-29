@@ -76,6 +76,7 @@ public class Item extends AbstractItem {
     // should be ideally in form backing object but for convenience
 	@Column(name="EDITREASON")
     private String editReason;
+	private 
 	/**
 	 * Default constructor
 	 */

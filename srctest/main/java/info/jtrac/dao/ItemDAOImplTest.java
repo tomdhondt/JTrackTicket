@@ -180,9 +180,9 @@ public class ItemDAOImplTest {
 			assertNotNull(itemFound);
 			assertNotNull(itemFound.getSpace());
 			assertEquals("Space one", itemFound.getSpace().getName());
-//			assertEquals(1, itemFound.getHistory().size());
+			assertEquals(1, itemFound.getHistory().size());
 			assertEquals(2,itemFound.getAttachments().size());
-//			assertEquals(1,itemFound.getSequenceNum());
+			assertEquals(1,itemFound.getSequenceNum());
 		} catch (DataDAOException e) {
 			assertNull(e);
 		}
@@ -194,28 +194,28 @@ public class ItemDAOImplTest {
 	}
 	@After
 	public void testAfter(){
-//		try {
-//			iPersistenceHistoryDAOImpl.delete(history.getId());
-//			iPersistenceAttachmentDAOImpl.delete(this.attachment00.getId());
-//			iPersistenceAttachmentDAOImpl.delete(this.attachment01.getId());
-//			iPersistenceUserDAOImpl.delete(this.loggedBy.getId());
-//			iPersistenceUserDAOImpl.delete(this.assignedTo.getId());
-//			iPersistenceSpaceDAOImpl.delete(this.space.getId());
-//			iPersistenceSpaceSequenceDAOImpl.delete(space.getSpaceSequence().getId());
-//		} catch (DataDAOException e) {
-//			assertNull(e);
-//		}
-	}
-	@Test
-	public void testFindAllCount(){
-		List<Item> listItem;
 		try {
-			listItem = iPersistenceItemDAOImpl.findAll(2);
-			assertNotNull(listItem);
-			assertTrue(listItem.size() == 2);
+			iPersistenceHistoryDAOImpl.delete(history.getId());
+			iPersistenceAttachmentDAOImpl.delete(this.attachment00.getId());
+			iPersistenceAttachmentDAOImpl.delete(this.attachment01.getId());
+			iPersistenceUserDAOImpl.delete(this.loggedBy.getId());
+			iPersistenceUserDAOImpl.delete(this.assignedTo.getId());
+			iPersistenceSpaceDAOImpl.delete(this.space.getId());
+			iPersistenceSpaceSequenceDAOImpl.delete(space.getSpaceSequence().getId());
 		} catch (DataDAOException e) {
 			assertNull(e);
 		}
 	}
+//	@Test
+//	public void testFindAllCount(){
+//		List<Item> listItem;
+//		try {
+//			listItem = iPersistenceItemDAOImpl.findAll(2);
+//			assertNotNull(listItem);
+//			assertTrue(listItem.size() == 2);
+//		} catch (DataDAOException e) {
+//			assertNull(e);
+//		}
+//	}
 
 }
