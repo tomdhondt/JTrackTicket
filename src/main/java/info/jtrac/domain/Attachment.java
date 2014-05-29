@@ -24,6 +24,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -38,6 +40,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="ATTACHMENT")
+@NamedQueries(
+		{
+			@NamedQuery(
+			name = "attachment_findByFileName",
+			query = "FROM Attachment a WHERE s.fileName = :fileName"
+			)
+		}
+	)
 public class Attachment {
 	/*
 	 * Instance members
