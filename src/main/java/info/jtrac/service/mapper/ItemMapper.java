@@ -46,8 +46,8 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 			object.setLoggedBy(AbstractItemMapper.getUser(MappingUtil.mapStringToLong(dto.getUser_loggedBy_Id())));
 			object.setAssignedTo(AbstractItemMapper.getUser(MappingUtil.mapStringToLong(dto.getUser_assignedTo_Id())));
 			object.setPlannedEffort(MappingUtil.mapStringToDouble(dto.getPlannedEffort()));
-			object.setStatus(MappingUtil.mapStringToInteger(dto.getStatus()));
-			object.setSeverity(MappingUtil.mapStringToInteger(dto.getStatus()));				// Integer
+			object.setStatus(dto.getStatus());
+			object.setSeverity(MappingUtil.mapStringToInteger(dto.getSeverity()));				// Integer
 			object.setPriority(MappingUtil.mapStringToInteger(dto.getPriority()));				// Integer
 			object.setCusInt01(MappingUtil.mapStringToInteger(dto.getCusInt01()));				// Integer
 			object.setCusInt02(MappingUtil.mapStringToInteger(dto.getCusInt02()));				// Integer
@@ -115,7 +115,7 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 				dto.setUser_assignedTo_email(object.getAssignedTo().getEmail());
 			}
 			dto.setPlannedEffort(MappingUtil.mapDoubleToString(object.getPlannedEffort()));
-			dto.setStatus(MappingUtil.mapIntegerToString(object.getStatus()));
+			dto.setStatus(object.getStatus());
 			dto.setSeverity(MappingUtil.mapIntegerToString(object.getSeverity()));
 			dto.setPriority(MappingUtil.mapIntegerToString(object.getPriority()));				// Integer
 			dto.setCusInt01(MappingUtil.mapIntegerToString(object.getCusInt01()));				// Integer
@@ -142,5 +142,4 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 		}
 		return dto;
 	}
-
 }

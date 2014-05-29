@@ -2,6 +2,8 @@ package main.java.info.jtrac.service.dto;
 
 import java.util.Date;
 
+import main.java.info.jtrac.domain.Status;
+
 /**
  * 
  * Class AbstractItem as DTO Object
@@ -27,7 +29,7 @@ public class AbstractItemDTO {
     private String user_assignedTo_email;
     private Date timeStamp;					// Date
     private String plannedEffort;			// Double
-    private String status;					// Integer
+    private Status status;					// Status
     private String severity;				// Integer
     private String priority;				// Integer
     private String cusInt01;				// Integer
@@ -149,7 +151,7 @@ public class AbstractItemDTO {
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 	/**
@@ -383,7 +385,7 @@ public class AbstractItemDTO {
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	/**

@@ -25,6 +25,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,8 +73,8 @@ public abstract class AbstractItem implements Serializable{
     private Date timeStamp;
 	@Column(name="PLANNEDEFFORT")
     private Double plannedEffort;
-	@Column(name="STATUS")
-    private Integer status;
+	@Enumerated(EnumType.STRING)
+    private Status status;
 	@Column(name="SEVERITY")
     private Integer severity;
 	@Column(name="PRIORITY")
@@ -221,12 +223,12 @@ public abstract class AbstractItem implements Serializable{
 
     public String getStatusValue() {
         // using accessor for space, getSpace() is overridden in subclass History
-        return getSpace().getMetadata().getStatusValue(status);
+        return getSpace().getMetadata().getStatusValue(status.getState());
     }    
     
     //===================================================
     
-    public Integer getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -324,7 +326,7 @@ public abstract class AbstractItem implements Serializable{
 
     //===============================================================
 
-    public void setStatus(Integer status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -90,11 +90,11 @@ public class Item extends AbstractItem {
     }    
     
     public Map<Integer, String> getPermittedTransitions(User user) {
-        return user.getPermittedTransitions(space, getStatus());        
+        return user.getPermittedTransitions(space, getStatus().getState());        
     }
     
     public List<Field> getEditableFieldList(User user) {
-        return user.getEditableFieldList(space, getStatus());
+        return user.getEditableFieldList(space, getStatus().getState());
     }
     
     public void add(History history) {

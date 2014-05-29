@@ -22,6 +22,7 @@ import main.java.info.jtrac.domain.Item;
 import main.java.info.jtrac.domain.ItemUser;
 import main.java.info.jtrac.domain.Space;
 import main.java.info.jtrac.domain.State;
+import main.java.info.jtrac.domain.Status;
 import main.java.info.jtrac.domain.User;
 import main.java.info.jtrac.domain.UserSpaceRole;
 import main.java.info.jtrac.util.UserUtils;
@@ -55,7 +56,7 @@ public class ItemFormPage extends BasePage {
     public ItemFormPage() {        
         Item item = new Item();
         item.setSpace(getCurrentSpace());
-        item.setStatus(State.NEW);        
+        item.setStatus(Status.NEW);        
         add(new ItemForm("form", item));
     }
     
@@ -221,7 +222,7 @@ public class ItemFormPage extends BasePage {
                 getJtrac().updateItem(item, user);                
             } else {
                 item.setLoggedBy(user);
-                item.setStatus(State.OPEN);                
+                item.setStatus(Status.OPEN);                
                 getJtrac().storeItem(item, fileUpload);                
             }                   
             // on creating an item, clear any search filter (especially the related item) from session
