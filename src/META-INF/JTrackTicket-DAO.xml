@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-	<bean id="attachmentDAOImpl" class="main.java.info.jtrac.dao.AttachmentDAOImpl"/>
-	<bean id="spaceDAOImpl" class="main.java.info.jtrac.dao.SpaceDAOImpl"/>
-	<bean id="spaceSequenceDAOImpl" class="main.java.info.jtrac.dao.SpaceSequenceDAOImpl"/>
-	<bean id="metadataDAOImpl" class="main.java.info.jtrac.dao.MetadataDAOImpl"/>
-	<bean id="userDAOImpl" class="main.java.info.jtrac.dao.UserDAOImpl"/>
-	<bean id="userSpaceRoleDAOImpl" class="main.java.info.jtrac.dao.UserSpaceRoleDAOImpl"/>
-	<bean id="historyDAOImpl" class="main.java.info.jtrac.dao.HistoryDAOImpl"/>
-	<bean id="itemDAOImpl" class="main.java.info.jtrac.dao.ItemDAOImpl"/>
-	<bean id="itemUserDAOImpl" class="main.java.info.jtrac.dao.ItemUserDAOImpl"/>
-	<bean id="itemItemDAOImpl" class="main.java.info.jtrac.dao.ItemItemDAOImpl"/>
-	<bean id="tagDAOImpl" class="main.java.info.jtrac.dao.TagDAOImpl"/>
-	<bean id="itemTagDAOImpl" class="main.java.info.jtrac.dao.ItemTagDAOImpl"/>
+	<bean id="attachmentDAOImpl" class="main.java.info.jtrac.dao.AttachmentDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="spaceDAOImpl" class="main.java.info.jtrac.dao.SpaceDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="spaceSequenceDAOImpl" class="main.java.info.jtrac.dao.SpaceSequenceDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="metadataDAOImpl" class="main.java.info.jtrac.dao.MetadataDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="userDAOImpl" class="main.java.info.jtrac.dao.UserDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="userSpaceRoleDAOImpl" class="main.java.info.jtrac.dao.UserSpaceRoleDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="historyDAOImpl" class="main.java.info.jtrac.dao.HistoryDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="itemDAOImpl" class="main.java.info.jtrac.dao.ItemDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="itemUserDAOImpl" class="main.java.info.jtrac.dao.ItemUserDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="itemItemDAOImpl" class="main.java.info.jtrac.dao.ItemItemDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="tagDAOImpl" class="main.java.info.jtrac.dao.TagDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
+	<bean id="itemTagDAOImpl" class="main.java.info.jtrac.dao.ItemTagDAOImpl">
+		<constructor-arg index="0" ref="sessionFactoryJTrack"/>
+	</bean>
 	<bean id="beforeAdviceLogger" class="main.java.info.jtrac.aop.BeforeAdviceLogger"/>
 	<bean id="beforeObjectIsNull" class="main.java.info.jtrac.aop.BeforeObjectIsNull"/>
 	<bean id="iPersistenceAttachmentDAOImpl" class="org.springframework.aop.framework.ProxyFactoryBean">

@@ -1,5 +1,7 @@
 package main.java.info.jtrac.dao;
 
+import org.hibernate.SessionFactory;
+
 import main.java.info.jtrac.domain.ItemItem;
 /**
  * Class ItemItemDAOImpl is responsible to create a implementation for to manage the interaction to the database
@@ -10,6 +12,13 @@ public class ItemItemDAOImpl extends AbstractDAOImpl<ItemItem> implements IPersi
 	 * Default constructor for the class
 	 */
 	public ItemItemDAOImpl(){
+		super.type = ItemItem.class;
+	}
+	/**
+	 * Default constructor for the class
+	 */
+	public ItemItemDAOImpl(SessionFactory sessionFactory){
+		super.sessionFactory = sessionFactory;
 		super.type = ItemItem.class;
 	}
 }

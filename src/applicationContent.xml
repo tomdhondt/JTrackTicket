@@ -2,6 +2,10 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 	"http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	<!-- imports across the application -->
+	<import resource="META-INF/JTrackInventory-JPA.xml"/>
+	<import resource="META-INF/JTrackInventory-DAO.xml"/>
+	<import resource="META-INF/JTrackInventory-mapper.xml"/>
+	<import resource="META-INF/JTrackInventory-manager.xml"/>
 	<import resource="META-INF/JTrackTicket-JPA.xml"/>
 	<import resource="META-INF/JTrackTicket-DAO.xml"/>
 	<import resource="META-INF/JTrackTicket-mapper.xml"/>

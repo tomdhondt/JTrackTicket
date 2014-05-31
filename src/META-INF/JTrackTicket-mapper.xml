@@ -10,7 +10,6 @@
 	<bean id="spaceMapper" class="main.java.info.jtrac.service.mapper.SpaceMapper"/>
 	<bean id="abstractItemMapper" class="main.java.info.jtrac.service.mapper.AbstractItemMapper"/>
 	<bean id="itemMapper" class="main.java.info.jtrac.service.mapper.ItemMapper"/>
-	<bean id="attachmentMapper" class="main.java.info.jtrac.service.mapper.AttachmentMapper"/>
 	<bean id="iUserMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
  		<property name="proxyInterfaces">
 			<value>main.java.info.jtrac.service.mapper.IMapper</value>
@@ -113,23 +112,6 @@
 			<ref bean="itemMapper"/>
 		</property>
 	</bean>
-	<bean id="iAttachmentMapper" class="org.springframework.aop.framework.ProxyFactoryBean">
- 		<property name="proxyInterfaces">
-			<value>main.java.info.jtrac.service.mapper.IMapper</value>
-		</property>
-		<property name="interceptorNames">
-			<list>
-				<value>mapToObject_advisor_IsNull</value>
-  				<!-- <value>mapToObject_object_IsMapped</value> -->
-				<!-- <value>mapToDTO_advisor_IsNull</value> -->
-				<!-- <value>mapToDTO_object_IsMapped</value> -->
-				<!-- <value>mapToObject_JValidate</value> -->
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="attachmentMapper"/>
-		</property>
-	</bean>	
 	<!-- 	-->
 	<!-- 										MapToObject OBJECT 											-->
 	<!-- 	-->

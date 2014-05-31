@@ -1,5 +1,7 @@
 package main.java.info.jtrac.dao;
 
+import org.hibernate.SessionFactory;
+
 import main.java.info.jtrac.domain.UserSpaceRole;
 /**
  * Class UserSpaceRoleDAOImpl is responsible to create a implementation for to manage the interaction to the database
@@ -10,6 +12,13 @@ public class UserSpaceRoleDAOImpl extends AbstractDAOImpl<UserSpaceRole> impleme
 	 * Default constructor for the class
 	 */
 	public UserSpaceRoleDAOImpl(){
+		super.type = UserSpaceRole.class;
+	}
+	/**
+	 * Default constructor for the class
+	 */
+	public UserSpaceRoleDAOImpl(SessionFactory sessionFactory){
+		super.sessionFactory = sessionFactory;
 		super.type = UserSpaceRole.class;
 	}
 }

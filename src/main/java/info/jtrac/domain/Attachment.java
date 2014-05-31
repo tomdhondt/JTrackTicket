@@ -43,8 +43,8 @@ import javax.persistence.Table;
 @NamedQueries(
 		{
 			@NamedQuery(
-			name = "attachment_findByFileName",
-			query = "FROM Attachment a WHERE s.fileName = :fileName"
+			name = "findByFileName",
+			query = "FROM Attachment a WHERE a.fileName = :fileName"
 			)
 		}
 	)

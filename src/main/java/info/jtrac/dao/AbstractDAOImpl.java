@@ -10,13 +10,12 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	/* 
 	 * Instance Members
 	 */
+	protected SessionFactory sessionFactory;
 	protected Class<T> type;
 	private Logger logger = Logger.getLogger(JTrackException.class);
     /**
@@ -46,17 +45,15 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery) throws DataDAOException {
 		List<T> result = null;
 		if(null != namedQuery && null != list){
-			ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-			SessionFactory sessionFactory_JTrackTicket = (SessionFactory) context.getBean("sessionFactory_JTrack");
 			try{
-				sessionFactory_JTrackTicket.getCurrentSession().getTransaction().begin();
-				Query q = sessionFactory_JTrackTicket.getCurrentSession().getNamedQuery(namedQuery);
+				this.sessionFactory.getCurrentSession().getTransaction().begin();
+				Query q = this.sessionFactory.getCurrentSession().getNamedQuery(namedQuery);
 				Collections.sort(list);
 				for(NameQueryParam nQp : list){
 					q.setString(nQp.getVarName(), nQp.getValue());
 				}
 				result = q.list();
-				sessionFactory_JTrackTicket.getCurrentSession().getTransaction().commit();			
+				this.sessionFactory.getCurrentSession().getTransaction().commit();			
 			}catch(Exception e){
 				throw new DataDAOException("object.findAll.error",e.getStackTrace());
 			}
@@ -74,11 +71,9 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery, int count) throws DataDAOException {
 		List<T> result = null;
 		if(null != namedQuery && null != list){
-			ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-			SessionFactory sessionFactory_JTrackTicket = (SessionFactory) context.getBean("sessionFactory_JTrack");
 			try{
-				sessionFactory_JTrackTicket.getCurrentSession().getTransaction().begin();
-				Query q = sessionFactory_JTrackTicket.getCurrentSession().getNamedQuery(namedQuery);
+				this.sessionFactory.getCurrentSession().getTransaction().begin();
+				Query q = this.sessionFactory.getCurrentSession().getNamedQuery(namedQuery);
 				Collections.sort(list);
 				for(NameQueryParam nQp : list){
 					q.setString(nQp.getVarName(), nQp.getValue());
@@ -89,7 +84,7 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 					q.setMaxResults(count);
 				}
 				result = q.list();
-				sessionFactory_JTrackTicket.getCurrentSession().getTransaction().commit();			
+				this.sessionFactory.getCurrentSession().getTransaction().commit();			
 			}catch(Exception e){
 				throw new DataDAOException("object.findAll.error",e.getStackTrace());
 			}
@@ -101,12 +96,10 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	 */
 	@Override
 	public void persist(T object) throws DataDAOException {
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			sessionFactory_JTrackInventory.getCurrentSession().persist(object);
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();			
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			this.sessionFactory.getCurrentSession().persist(object);
+			this.sessionFactory.getCurrentSession().getTransaction().commit();			
 		}catch(Exception eXe){
 			throw new DataDAOException("object.persist.couldNotPersist", eXe.getStackTrace());
 		}
@@ -119,22 +112,20 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	@SuppressWarnings("unchecked")
 	@Override
     public T findByID(long id) throws DataDAOException{
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		/* create a object to pointer the object */
 		T object = null;
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery("FROM " + this.getType().getName() + " WHERE ID = "+ id);
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			Query query = this.sessionFactory.getCurrentSession().createQuery("FROM " + this.getType().getName() + " WHERE ID = "+ id);
 			List<T> resultList = query.list();
 			/* set the return object */
 			for(T ob : resultList){
 				object = ob;
 			}
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(Exception eXe){
 			try{
-				sessionFactory_JTrackInventory.getCurrentSession().getTransaction().rollback();
+				this.sessionFactory.getCurrentSession().getTransaction().rollback();
 				throw new DataDAOException("Object.findByID.notObjectFound", eXe.getStackTrace());
 			}catch(HibernateException hEx){
 				throw new DataDAOException("Object.findByID.notObjectFound", hEx.getStackTrace());
@@ -152,14 +143,12 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() throws DataDAOException{
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		List<T> resultList = null;
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery("FROM " + this.getType().getName());
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			Query query = this.sessionFactory.getCurrentSession().createQuery("FROM " + this.getType().getName());
 			resultList = query.list();
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(HibernateException hEx){
 			logger.error(hEx.getMessage());
 			throw new DataDAOException("object.findAll.error",hEx.getStackTrace());
@@ -176,19 +165,17 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll(int count) throws DataDAOException{
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		List<T> resultList = null;
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery("FROM " + this.getType().getName());
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			Query query = this.sessionFactory.getCurrentSession().createQuery("FROM " + this.getType().getName());
 			if(count <=0){
 				query.setMaxResults(1);
 			}else{
 				query.setMaxResults(count);	
 			}
 			resultList = query.list();
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(HibernateException hEx){
 			logger.error(hEx.getMessage());
 			throw new DataDAOException("object.findAll.error",hEx.getStackTrace());
@@ -203,15 +190,13 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	 */
 	public boolean delete(long id)throws DataDAOException{
 		boolean success = false;
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery("DELETE " + this.getType().getName() + " WHERE ID = "+ id );
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			Query query = this.sessionFactory.getCurrentSession().createQuery("DELETE " + this.getType().getName() + " WHERE ID = "+ id );
 			if(0 < query.executeUpdate()){
 				success = true;
 			}
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(Exception eXe){
 			logger.error(eXe.getMessage());
 			throw new DataDAOException("object.delete.error", eXe.getStackTrace());
@@ -231,18 +216,16 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	public boolean remove(long id) throws DataDAOException {
 		/* method variable */
 		boolean success = false;
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
 		    String hql = "UPDATE " + this.getType().getName() + " SET active = :active WHERE ID = :ID";
-		    Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery(hql);
+		    Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		    query.setBoolean("active",false);
 		    query.setLong("ID",id);
 			if(0 < query.executeUpdate()){
 				success = true;
 			}
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(Exception eXe){
 			logger.error(eXe.getMessage());
 			throw new DataDAOException("object.remove.couldNotPersist", eXe.getStackTrace());
@@ -257,14 +240,12 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public T update(T object) throws DataDAOException{
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		T updatedObject = null;
 		/* Update the object in the database */
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			sessionFactory_JTrackInventory.getCurrentSession().saveOrUpdate(object);
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			this.sessionFactory.getCurrentSession().saveOrUpdate(object);
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(Exception eXe){
 			logger.error(eXe.getMessage());
 			eXe.printStackTrace();
@@ -273,9 +254,9 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 		}
 		/* merge the object */
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
-			updatedObject = (T) sessionFactory_JTrackInventory.getCurrentSession().merge(object);
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
+			updatedObject = (T) this.sessionFactory.getCurrentSession().merge(object);
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(Exception eXe){
 			logger.error(eXe.getMessage());
 			throw new DataDAOException("object.merge.couldNotMerge", eXe.getStackTrace());
@@ -288,17 +269,15 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	 */
 	@Override
 	public boolean dropTable() throws DataDAOException{
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});
-		SessionFactory sessionFactory_JTrackInventory = (SessionFactory) context.getBean("sessionFactory_JTrack");
 		boolean success = false;
 		try{
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().begin();
+			this.sessionFactory.getCurrentSession().getTransaction().begin();
 		    String hql = "DELETE FROM " + this.getType().getName();
-		    Query query = sessionFactory_JTrackInventory.getCurrentSession().createQuery(hql);
+		    Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 			if(0 < query.executeUpdate()){
 				success = true;
 			}
-			sessionFactory_JTrackInventory.getCurrentSession().getTransaction().commit();
+			this.sessionFactory.getCurrentSession().getTransaction().commit();
 		}catch(Exception eXe){
 			logger.error(eXe.getMessage());
 			throw new DataDAOException("drop.table.error", eXe.getStackTrace());

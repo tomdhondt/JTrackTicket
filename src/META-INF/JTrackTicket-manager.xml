@@ -105,25 +105,6 @@
 			<ref bean="itemManager"/>
 		</property>
 	</bean>
-	<bean id=attachmentManager class="main.java.info.jtrac.service.manager.AttachmentManager">
-		<constructor-arg index="0" ref="attachmentDAOImpl"/>
-		<constructor-arg index="1" ref="attachmentMapper"/>
-	</bean>
-	<bean id="iAttachmentManager" class="org.springframework.aop.framework.ProxyFactoryBean">
- 		<property name="proxyInterfaces">
-			<value>main.java.info.jtrac.service.manager.IManager</value>
-		</property>
-		<property name="interceptorNames">
-			<list>
-				<value>managerObjectIsNull</value>
-				<value>jValidate</value>
-				<!-- <value>afterObjectIsManaged</value> -->
-			</list>
-		</property>
-		<property name="target">
-			<ref bean="attachmentManager"/>
-		</property>
-	</bean>
 	<!-- 																								-->
 	<!-- 										Manager OBJECT 											-->
 	<!-- 																								-->

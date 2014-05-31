@@ -36,6 +36,8 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Index;
 import org.apache.lucene.document.Field.Store;
 
+import be.jtrackinventory.business.bean.MaterialObject;
+
 /**
  * This object represents a generic item which can be an issue, defect, task etc.
  * some logic for field accessors and conversion of keys to display values 
@@ -76,7 +78,8 @@ public class Item extends AbstractItem {
     // should be ideally in form backing object but for convenience
 	@Column(name="EDITREASON")
     private String editReason;
-	private String vzdhk;
+	@Column(name="MATERIALOBJECTID")
+	private String materialObjectId;
 	/**
 	 * Default constructor
 	 */
@@ -203,7 +206,19 @@ public class Item extends AbstractItem {
         this.editReason = editReason;
     }   
     
-    @Override
+	/**
+	 * @return the materialObjectId
+	 */
+	public String getMaterialObjectId() {
+		return materialObjectId;
+	}
+	/**
+	 * @param materialObjectId the materialObjectId to set
+	 */
+	public void setMaterialObjectId(String materialObjectId) {
+		this.materialObjectId = materialObjectId;
+	}
+	@Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append(super.toString());

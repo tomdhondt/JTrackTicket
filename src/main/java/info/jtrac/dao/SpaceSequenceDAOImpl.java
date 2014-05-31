@@ -1,5 +1,7 @@
 package main.java.info.jtrac.dao;
 
+import org.hibernate.SessionFactory;
+
 import main.java.info.jtrac.domain.SpaceSequence;
 /**
  * Class SpaceSequenceDAOImpl is responsible to create a implementation for to manage the interaction to the database
@@ -10,6 +12,13 @@ public class SpaceSequenceDAOImpl extends AbstractDAOImpl<SpaceSequence> impleme
 	 * Default constructor for the class
 	 */
 	public SpaceSequenceDAOImpl(){
+		super.type = SpaceSequence.class;
+	}
+	/**
+	 * Default constructor for the class
+	 */
+	public SpaceSequenceDAOImpl(SessionFactory sessionFactory){
+		super.sessionFactory = sessionFactory;
 		super.type = SpaceSequence.class;
 	}
 }

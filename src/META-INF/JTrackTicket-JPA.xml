@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 	"http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean id="dataSource_JTrack" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-		<property name="url" value="jdbc:sqlserver://VTWRKS35\IMOSSQL2008R2;databaseName=jTrackDB"/>
-		<property name="username" value="TicketSQLAdmin"/>
-		<property name="password" value="admin@TICKET"/>
-    </bean>
-    <bean id="sessionFactory_JTrack" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource_JTrack"/>
+    <bean id="sessionFactoryJTrack" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
 				<prop key="hibernate.archive.autodetection">class</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.current_session_context_class">thread</prop>
             </props>
         </property>
