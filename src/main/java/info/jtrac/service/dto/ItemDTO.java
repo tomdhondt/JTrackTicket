@@ -20,6 +20,7 @@ public class ItemDTO extends AbstractItemDTO{
     private boolean space_isGuestAllowed;
     private String sequenceNum;
     private String editReason;
+    private String MaterialObjectId;
 //    private Set<History> history;
     private Map<String, String> children;
 //    private Set<Attachment> attachments;
@@ -139,6 +140,19 @@ public class ItemDTO extends AbstractItemDTO{
 	 */
 	public void setEditReason(String editReason) {
 		this.editReason = editReason;
+	}
+	
+	/**
+	 * @return the materialObjectId
+	 */
+	public String getMaterialObjectId() {
+		return MaterialObjectId;
+	}
+	/**
+	 * @param materialObjectId the materialObjectId to set
+	 */
+	public void setMaterialObjectId(String materialObjectId) {
+		MaterialObjectId = materialObjectId;
 	}
 	/**
 	 * @return the children
