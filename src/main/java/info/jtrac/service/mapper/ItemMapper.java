@@ -35,6 +35,7 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 			object.setSpace(space);
 			object.setSequenceNum(MappingUtil.mapStringToLong(dto.getSequenceNum()));
 			object.setEditReason(dto.getEditReason());
+			object.setMaterialObjectId(dto.getMaterialObjectId());
 			// add the children items to the Item
 //			object.getChildren().add()
 //		    private Set<History> history;
@@ -91,7 +92,7 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 				dto.setSpace_PrefixCode(object.getSpace().getPrefixCode());
 				dto.setSpace_Name(object.getSpace().getName());
 				dto.setSpace_Description(object.getSpace().getDescription());
-				dto.setSpace_isGuestAllowed(object.getSpace().isGuestAllowed());
+				dto.setSpace_isGuestAllowed(object.getSpace().isGuestAllowed());				
 			}
 			dto.setSequenceNum(MappingUtil.mapLongToString(object.getSequenceNum()));
 			dto.setEditReason(object.getEditReason());
@@ -102,6 +103,7 @@ public class ItemMapper extends AbstractMapper<Item, ItemDTO>{
 			}
 			dto.setSummary(object.getSummary());
 			dto.setDetail(object.getDetail());
+			dto.setMaterialObjectId(object.getMaterialObjectId());
 			if(null != object.getParent()){
 				dto.setUser_loggedBy_Id(MappingUtil.mapLongToString(object.getLoggedBy().getId()));
 				dto.setUser_loggedBy_name(object.getLoggedBy().getName());
