@@ -36,8 +36,6 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Index;
 import org.apache.lucene.document.Field.Store;
 
-import be.jtrackinventory.business.bean.MaterialObject;
-
 /**
  * This object represents a generic item which can be an issue, defect, task etc.
  * some logic for field accessors and conversion of keys to display values 
