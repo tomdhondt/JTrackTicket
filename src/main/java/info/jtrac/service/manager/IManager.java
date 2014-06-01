@@ -55,6 +55,12 @@ public interface IManager <T>{
 	 */
 	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery, int count) throws ManagerException;
 	/**
+	 * Method will find a object based on the criteria of the object
+	 * @param namedQuery as String
+	 * @return List<Object> as result
+	 */
+	public List<Object> findByCriteria(String namedQuery) throws ManagerException;
+	/**
 	 * Method will update the object in the database
 	 * @param object as T
 	 * @return T as updated object

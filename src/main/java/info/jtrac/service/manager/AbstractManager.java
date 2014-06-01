@@ -168,6 +168,21 @@ public abstract class AbstractManager<D,T> implements IManager<D> {
 	 * @return T as result
 	 */
 	@Override
+	public List<Object> findByCriteria(String namedQuery) throws ManagerException{
+		List<Object> listResult = new ArrayList<>();
+		try {
+			listResult = this.daoImpl.findByCriteria(namedQuery);
+		} catch (DataDAOException dXe) {
+			throw new ManagerException(dXe.getCaption());
+		}
+		return listResult;
+	}
+	/**
+	 * Method will find a object based on the criteria of the object
+	 * @param Object as T
+	 * @return T as result
+	 */
+	@Override
 	public List<D> findByCriteria(List<NameQueryParam> list , String namedQuery, int count) throws ManagerException{
 		List<D> listResult = new ArrayList<>();
 		List<T> listQueryResult = null;
