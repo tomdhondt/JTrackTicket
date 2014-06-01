@@ -12,10 +12,10 @@ import main.java.info.jtrac.util.MappingUtil;
 
 @SuppressWarnings("unchecked")
 public class AttachmentMapper extends AbstractMapper<Attachment, AttachmentDTO>{
-	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
-	IPersistenceDAOImpl<Attachment> iPersistenceAttachmentDAOImpl = (IPersistenceDAOImpl<Attachment>) context.getBean("iPersistenceAttachmentDAOImpl");
 	@Override
 	public Attachment mapToObject(AttachmentDTO dto) throws MapperException {
+		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"applicationContent.xml"});	
+		IPersistenceDAOImpl<Attachment> iPersistenceAttachmentDAOImpl = (IPersistenceDAOImpl<Attachment>) context.getBean("iPersistenceAttachmentDAOImpl");
 		Attachment object = null;
 		if(null != dto){
 			object = new Attachment();
