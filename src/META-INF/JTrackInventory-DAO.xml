@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="propertyTypeDAOImpl" class="be.jtrackinventory.business.data.PropertyTypeDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="propertyGroupDAOImpl" class="be.jtrackinventory.business.data.PropertyGroupDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="materialComponentDAOImpl" class="be.jtrackinventory.business.data.MaterialComponentDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="materialComponentObjectDAOImpl" class="be.jtrackinventory.business.data.MaterialComponentObjectDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="materialDAOImpl" class="be.jtrackinventory.business.data.MaterialDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="locationDAOImpl" class="be.jtrackinventory.business.data.LocationDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="propertyDAOImpl" class="be.jtrackinventory.business.data.PropertyDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="valueDAOImpl" class="be.jtrackinventory.business.data.ValueDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="materialObjectDAOImpl" class="be.jtrackinventory.business.data.MaterialObjectDAOImpl">
+		<constructor-arg index="0" ref="sessionFactory"/>
+	</bean>
+	<bean id="beforeObjectIsNull" class="be.jtrackinventory.aop.BeforeObjectIsNull"/>
+	<bean id="beforeAdviceJValidate" class="be.jtrackinventory.aop.BeforeAdviceJValidate"/>
+	<bean id="beforeAdviceLogger" class="be.jtrackinventory.aop.BeforeAdviceLogger"/>
+	<bean id="beforeAdviceAlreadyExists" class="be.jtrackinventory.aop.BeforeAdviceAlreadyExists"/>
+	<bean id="beforeAdvisorDoesntExists" class="be.jtrackinventory.aop.BeforeAdviceDoesntExists"/>
+	<bean id="iPersistenceDAOImplPropertyType" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyTypeDAOImpl"/>
+		</property>
+	</bean>	
+	<bean id="iPersistenceDAOImplPropertyGroup" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyGroupDAOImpl"/>
+		</property>
+	</bean>
+	<bean id="iPersistenceDAOImplProperty" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyDAOImpl"/>
+		</property>
+	</bean>
+	<bean id="iPersistenceDAOImplMaterialComponent" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialComponentDAOImpl"/>
+		</property>
+	</bean>	
+	<bean id="iPersistenceDAOImplMaterial" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialDAOImpl"/>
+		</property>
+	</bean>	
+	<bean id="iPersistenceDAOImplLocation" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="locationDAOImpl"/>
+		</property>
+	</bean>
+	<bean id="iPersistenceDAOImplvalue" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="valueDAOImpl"/>
+		</property>
+	</bean>
+	<bean id="iPersistenceDAOImplMaterialComponentObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialComponentObjectDAOImpl"/>
+		</property>
+	</bean>
+	<bean id="iPersistenceDAOImplMaterialObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.business.data.IPersistenceDAOImpl</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+ 				<value>updateAdvisor_IsNull</value>
+				<value>updateAdvisor_CheckExists</value>
+				<value>persistAdvisor_IsNull</value>
+ 				<value>persistAdvisor_logger</value>
+				<value>persistAdvisor_JValidate</value>
+				<value>removeAdvisor_IsNull</value>
+				<value>beforeAdvice_AlreadyExists</value>
+				<value>findByIDAdvisor_IsNull</value>
+				<value>deleteAdvisor_IsNull</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialObjectDAOImpl"/>
+		</property>
+	</bean>
+	<!-- 	-->
+	<!-- 										UPDATE OBJECT 											-->
+	<!-- 	-->
+	<bean id="updatePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="update"/>
+	</bean>
+	<bean id="updateAdvisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="updatePointcut"/>
+		<property name="advice" ref="beforeObjectIsNull"/>
+	</bean>
+	<bean id="updateAdvisor_CheckExists" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="updatePointcut"/>
+		<property name="advice" ref="beforeAdvisorDoesntExists"/>
+	</bean>
+	<!--	-->
+	<!-- 										FINDBYID OBJECT 										-->
+	<!-- 	-->
+	<bean id="findByIDPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="findByID"/>
+	</bean>
+	<bean id="findByIDAdvisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="findByIDPointcut"/>
+		<property name="advice" ref="beforeObjectIsNull"/>
+	</bean>
+	<!-- 	-->
+	<!-- 										PERSIST OBJECT 											-->
+	<!-- 	-->
+	<bean id="persistPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="persist"/>
+	</bean>
+	<bean id="persistAdvisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeObjectIsNull"/>
+	</bean>
+	<bean id="persistAdvisor_logger" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeAdviceLogger"/>
+	</bean>
+	<bean id="persistAdvisor_JValidate" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeAdviceJValidate"/>
+	</bean>
+	<bean id="beforeAdvice_AlreadyExists" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeAdviceAlreadyExists"/>
+	</bean>
+	<!-- 	-->
+	<!-- 										REMOVE OBJECT 											-->
+	<!-- 	-->
+	<bean id="removePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="remove"/>
+	</bean>
+	<bean id="removeAdvisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="removePointcut"/>
+		<property name="advice" ref="beforeObjectIsNull"/>
+	</bean>
+	<!-- 	-->
+	<!-- 										DELETE OBJECT 											-->
+	<!-- 	-->
+	<bean id="deletePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="delete"/>
+	</bean>
+	<bean id="deleteAdvisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="deletePointcut"/>
+		<property name="advice" ref="beforeObjectIsNull"/>
+	</bean>
+	<!-- 	-->
+	<!-- 										FINDALL OBJECT 											-->
+	<!-- 	-->
+	<bean id="findAllPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="findAll"/>
+	</bean>
+</beans>

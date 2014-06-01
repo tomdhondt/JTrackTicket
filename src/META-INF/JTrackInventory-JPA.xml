@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
+		<property name="url" value="jdbc:jtds:sqlserver://VTWRKS35/jTrackDB;instance=IMOSSQL2008R2"/>
+		<property name="username" value="TicketSQLAdmin"/>
+		<property name="password" value="admin@TICKET"/>
+    </bean>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+				<prop key="hibernate.archive.autodetection">class</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+        <property name="annotatedClasses">
+			<list>
+				<value>be.jtrackinventory.business.bean.Property</value>
+				<value>be.jtrackinventory.business.bean.PropertyType</value>
+				<value>be.jtrackinventory.business.bean.PropertyGroup</value>
+				<value>be.jtrackinventory.business.bean.MaterialComponent</value>
+				<value>be.jtrackinventory.business.bean.MaterialComponentObject</value>
+				<value>be.jtrackinventory.business.bean.MaterialObject</value>
+				<value>be.jtrackinventory.business.bean.Material</value>
+				<value>be.jtrackinventory.business.bean.Location</value>
+				<value>be.jtrackinventory.business.bean.Group</value>
+				<value>be.jtrackinventory.business.bean.Value</value>
+			</list>
+		</property>
+    </bean>
+</beans>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="objectIsNull" class="be.jtrackinventory.aop.mapper.BeforeObjectIsNull"/>
+	<bean id="objectIsMapped" class="be.jtrackinventory.aop.mapper.AfterObjectIsMapped"/>
+	<bean id="beforeAdviceJValidate" class="be.jtrackinventory.aop.mapper.BeforeAdviceJValidate"/>
+	<bean id="propertyTypeMapper" class="be.jtrackinventory.service.mapper.PropertyTypeMapper"/>
+	<bean id="propertyMapper" class="be.jtrackinventory.service.mapper.PropertyMapper"/>
+	<bean id="propertyGroupMapper" class="be.jtrackinventory.service.mapper.PropertyGroupMapper"/>
+	<bean id="materialComponentMapper" class="be.jtrackinventory.service.mapper.MaterialComponentMapper"/>
+	<bean id="materialMapper" class="be.jtrackinventory.service.mapper.MaterialMapper"/>
+	<bean id="materialObjectMapper" class="be.jtrackinventory.service.mapper.MaterialObjectMapper"/>
+	<bean id="materialComponentObjectMapper" class="be.jtrackinventory.service.mapper.MaterialComponentObjectMapper"/>
+	<bean id="locationMapper" class="be.jtrackinventory.service.mapper.LocationMapper"/>
+	<bean id="valueMapper" class="be.jtrackinventory.service.mapper.ValueMapper"/>
+	<bean id="iMapperValue" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="valueMapper"/>
+		</property>
+	</bean>
+	<bean id="iMapperProperty" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyMapper"/>
+		</property>
+	</bean>
+	<bean id="iMapperPropertyType" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyTypeMapper"/>
+		</property>
+	</bean>
+	<bean id="iMapperPropertyGroup" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyGroupMapper"/>
+		</property>
+	</bean>	
+	<bean id="iMapperMaterialComponent" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialComponentMapper"/>
+		</property>
+	</bean>	
+	<bean id="iMapperMaterial" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialMapper"/>
+		</property>
+	</bean>	
+	<bean id="iMapperLocation" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="locationMapper"/>
+		</property>
+	</bean>
+	<bean id="iMapperMaterialObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialObjectMapper"/>
+		</property>
+	</bean>		
+	<bean id="iMapperMaterialComponentObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.mapper.IMapper</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>mapToObject_advisor_IsNull</value>
+				<value>mapToObject_object_IsMapped</value>
+				<value>mapToDTO_advisor_IsNull</value>
+				<value>mapToDTO_object_IsMapped</value>
+				<value>mapToObject_JValidate</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialComponentObjectMapper"/>
+		</property>
+	</bean>	
+	<!-- 	-->
+	<!-- 										MapToObject OBJECT 											-->
+	<!-- 	-->
+	<bean id="mapToObjectPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="mapToObject"/>
+	</bean>
+	<bean id="mapToObject_advisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToObjectPointcut"/>
+		<property name="advice" ref="objectIsNull"/>
+	</bean>
+	<bean id="mapToObject_object_IsMapped" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToObjectPointcut"/>
+		<property name="advice" ref="objectIsMapped"/>
+	</bean>
+	<bean id="mapToObject_JValidate" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="persistPointcut"/>
+		<property name="advice" ref="beforeAdviceJValidate"/>
+	</bean>
+	<!-- 	-->
+	<!-- 										MapToDTO OBJECT 											-->
+	<!-- 	-->
+	<bean id="mapToDTOPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="mapToDTO"/>
+	</bean>
+	<bean id="mapToDTO_advisor_IsNull" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToDTOPointcut"/>
+		<property name="advice" ref="objectIsNull"/>
+	</bean>
+	<bean id="mapToDTO_object_IsMapped" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="mapToDTOPointcut"/>
+		<property name="advice" ref="objectIsMapped"/>
+	</bean>
+</beans>

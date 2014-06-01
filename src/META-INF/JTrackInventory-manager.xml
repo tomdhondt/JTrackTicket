@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--  					-->
+	<!-- 	INTERCEPTORS	-->
+	<!--  					-->
+	<bean id="objectIsManaged" class="be.jtrackinventory.aop.manager.AfterObjectIsManaged"/>
+	<!--  										-->
+	<!-- 	Annotation for the PROPERTYTYPE 	-->
+	<!--  										-->
+	<bean id="propertyTypeManager" class="be.jtrackinventory.service.manager.PropertyTypeManager">
+		<constructor-arg index="0" ref="propertyTypeDAOImpl"/>
+		<constructor-arg index="1" ref="propertyTypeMapper"/>
+	</bean>
+	<bean id="iManagerPropertyType" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyTypeManager"/>
+		</property>
+	</bean>
+	<!--  									-->
+	<!--	Annotation for the PROPERTY 	-->
+	<!--  									-->
+	<bean id="propertyManager" class="be.jtrackinventory.service.manager.PropertyManager">
+		<constructor-arg index="0" ref="propertyDAOImpl"/>
+		<constructor-arg index="1" ref="propertyMapper"/>
+	</bean>
+	<bean id="iManagerProperty" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyManager"/>
+		</property>
+	</bean>
+	<!--  										-->
+	<!--	Annotation for the PROPERTYGROUP 	-->
+	<!--  										-->
+	<bean id="propertyGroupManager" class="be.jtrackinventory.service.manager.PropertyGroupManager">
+		<constructor-arg index="0" ref="propertyGroupDAOImpl"/>
+		<constructor-arg index="1" ref="propertyGroupMapper"/>
+	</bean>
+	<bean id="iManagerPropertyGroup" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="propertyGroupManager"/>
+		</property>
+	</bean>
+	<!--  											-->
+	<!--	Annotation for the MATERIALCOMPONENT	-->
+	<!--  											-->
+	<bean id="materialComponentManager" class="be.jtrackinventory.service.manager.MaterialComponentManager">
+		<constructor-arg index="0" ref="materialComponentDAOImpl"/>
+		<constructor-arg index="1" ref="materialComponentMapper"/>
+	</bean>
+	<bean id="iManagerMaterialComponent" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialComponentManager"/>
+		</property>
+	</bean>
+	<!--  											-->
+	<!--	Annotation for the MATERIAL				-->
+	<!--  											-->
+	<bean id="materialManager" class="be.jtrackinventory.service.manager.MaterialManager">
+		<constructor-arg index="0" ref="materialDAOImpl"/>
+		<constructor-arg index="1" ref="materialMapper"/>
+	</bean>
+	<bean id="iManagerMaterial" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialManager"/>
+		</property>
+	</bean>
+	<!--  											-->
+	<!--	Annotation for the VALUE				-->
+	<!--  											-->
+	<bean id="valueManager" class="be.jtrackinventory.service.manager.ValueManager">
+		<constructor-arg index="0" ref="valueDAOImpl"/>
+		<constructor-arg index="1" ref="valueMapper"/>
+	</bean>
+	<bean id="iManagerValue" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="valueManager"/>
+		</property>
+	</bean>
+	<!--  											-->
+	<!--	Annotation for the MATERIALOBJECT		-->
+	<!--  											-->
+	<bean id="materialComponentObjectManager" class="be.jtrackinventory.service.manager.MaterialComponentObjectManager">
+		<constructor-arg index="0" ref="materialComponentObjectDAOImpl"/>
+		<constructor-arg index="1" ref="materialComponentObjectMapper"/>
+	</bean>
+	<bean id="iManagerMaterialComponentObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialComponentObjectManager"/>
+		</property>
+	</bean>
+	<!--  											-->
+	<!--	Annotation for the MATERIALOBJECT		-->
+	<!--  											-->
+	<bean id="materialObjectManager" class="be.jtrackinventory.service.manager.MaterialObjectManager">
+		<constructor-arg index="0" ref="materialObjectDAOImpl"/>
+		<constructor-arg index="1" ref="materialObjectMapper"/>
+	</bean>
+	<bean id="iManagerMaterialObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="proxyInterfaces">
+			<value>be.jtrackinventory.service.manager.IManager</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterObjectIsManaged</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="materialObjectManager"/>
+		</property>
+	</bean>
+	<!-- 																								-->
+	<!-- 										Manager OBJECT 											-->
+	<!-- 																								-->
+	<bean id="findAllPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="findAll"/>
+	</bean>
+	<bean id="AfterObjectIsManaged" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="findAllPointcut"/>
+		<property name="advice" ref="objectIsManaged"/>
+	</bean>
+</beans>
