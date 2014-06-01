@@ -63,6 +63,27 @@ public abstract class AbstractDAOImpl<T> implements IPersistenceDAOImpl<T>{
 	/**
 	 * Method will find a object in the database based on the criteria of the object.
 	 * @param Object as T
+	 * @return Set<T> as resultSet
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> findByCriteria(String namedQuery) throws DataDAOException {
+		List<Object> result = null;
+		if(null != namedQuery){
+			try{
+				this.sessionFactory.getCurrentSession().getTransaction().begin();
+				Query q = this.sessionFactory.getCurrentSession().getNamedQuery(namedQuery);
+				result = q.list();
+				this.sessionFactory.getCurrentSession().getTransaction().commit();			
+			}catch(Exception e){
+				throw new DataDAOException("object.findAll.error",e.getStackTrace());
+			}
+		}
+		return result;
+	}
+	/**
+	 * Method will find a object in the database based on the criteria of the object.
+	 * @param Object as T
 	 * @param count as int
 	 * @return Set<T> as resultSet
 	 */

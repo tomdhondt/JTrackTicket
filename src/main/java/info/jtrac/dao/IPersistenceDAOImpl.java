@@ -49,6 +49,12 @@ public interface IPersistenceDAOImpl <T>{
 	public List<T> findByCriteria(List<NameQueryParam> list , String namedQuery) throws DataDAOException;
 	/**
 	 * Method will find a object based on the criteria of the object
+	 * @param String as namedQuery
+	 * @return List<Object> as result
+	 */
+	public List<Object> findByCriteria(String namedQuery) throws DataDAOException;
+	/**
+	 * Method will find a object based on the criteria of the object
 	 * @param Object as T
 	 * @param int as count of Objects
 	 * @return T as result

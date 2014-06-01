@@ -48,8 +48,20 @@ import be.jtrackinventory.business.bean.MaterialObject;
 @NamedQueries(
 		{
 			@NamedQuery(
-			name = "findByDetail",
-			query = "FROM Item i WHERE i.detail = :detail"
+				name = "findByDetail",
+				query = "FROM Item i WHERE i.detail = :detail"
+			),
+			@NamedQuery(
+				name = "Item.count.open",
+				query = "Select count(id) FROM Item i where i.status = main.java.info.jtrac.domain.Status.OPEN"
+			),
+			@NamedQuery(
+				name = "Item.count.closed",
+				query = "Select count(id) FROM Item i where i.status = main.java.info.jtrac.domain.Status.CLOSED"
+			),
+			@NamedQuery(
+				name = "Item.count.new",
+				query = "Select count(id) FROM Item i where i.status <> main.java.info.jtrac.domain.Status.CLOSED AND i.status <> main.java.info.jtrac.domain.Status.OPEN"
 			)
 		}
 	)
@@ -86,7 +98,7 @@ public class Item extends AbstractItem {
 	public Item(){
         this.children = new LinkedHashSet<Item>();
         this.history = new LinkedHashSet<History>();
-        this.attachments = new LinkedHashSet<Attachment>();
+        this.attachments = new LinkedHashSet<Attachment>();        
 	}
     @Override
     public String getRefId() {
